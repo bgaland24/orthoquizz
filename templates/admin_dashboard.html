@@ -14,7 +14,7 @@
     par le contenu du fichier <code>data/phrases.csv</code>.
 </p>
 
-<form method="POST" action="{{ url_for('admin_dashboard') }}">
+<form method="POST" action="{{ url_for('admin_reload') }}">
     {{ form.hidden_tag() }}
     <button type="submit" style="background:#e74c3c;">
         Recharger les phrases depuis le CSV

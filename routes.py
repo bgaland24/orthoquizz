@@ -192,7 +192,7 @@ def register_routes(app):
         from services import recharger_phrases
         succes, message = recharger_phrases(app.config['PHRASES_CSV'])
         flash(message, 'success' if succes else 'error')
-        return redirect(url_for('login'))
+        return redirect(url_for('admin_dashboard'))
 
     # -----------------------------------------------------------------------
     # Admin — déconnexion
