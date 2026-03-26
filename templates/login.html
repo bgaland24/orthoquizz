@@ -1,0 +1,11 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h2>Connexion</h2>
+<form method="post">
+  <input class="form-control my-2" name="username" placeholder="Username" required>
+  <input class="form-control my-2" name="password" type="password" placeholder="Password" required>
+  <button class="btn btn-primary w-100">Se connecter</button>
+</form>
+<a href="/register">Créer un compte</a>
+{% endblock %}
