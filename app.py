@@ -1,65 +1,43 @@
+import os
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+#from flask_login import LoginManager
+from flask_wtf.csrf import CSRFProtect
+from dotenv import load_dotenv
 
-from flask import Flask, render_template, request, redirect, url_for, session, flash
-import json, os
-from werkzeug.security import generate_password_hash, check_password_hash
+load_dotenv()  # Charge .env en local (ignoré si les variables sont déjà définies)
 
-app = Flask(__name__)
-app.secret_key = "secret_key_change_me"
+# --- Extensions ---
+db            = SQLAlchemy()
+#login_manager = LoginManager()
+csrf          = CSRFProtect()
 
-USER_FILE = "users.json"
+#login_manager.login_view    = 'login'
+#login_manager.login_message = 'Connecte-toi pour accéder à cette page.'
 
-def load_users():
-    if not os.path.exists(USER_FILE):
-        return {}
-    with open(USER_FILE, "r") as f:
-        return json.load(f)
 
-def save_users(users):
-    with open(USER_FILE, "w") as f:
-        json.dump(users, f)
+def create_app() -> Flask:
+    app = Flask(__name__)
 
-@app.route("/", methods=["GET", "POST"])
-def login():
-    if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
-        users = load_users()
+    # --- Config ---
+    app.config['SECRET_KEY']                     = os.environ.get('SECRET_KEY', 'dev-only')
+    app.config['SQLALCHEMY_DATABASE_URI']        = f"sqlite:///{os.path.join(os.path.abspath(os.path.dirname(__file__)), 'orthoquizz.db')}"
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['ADMIN_LOGIN']                    = os.environ.get('ADMIN_LOGIN', 'admin')
+    app.config['ADMIN_PASSWORD']                 = os.environ.get('ADMIN_PASSWORD', 'changeme')
+    app.config['PHRASES_CSV']                    = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'data', 'phrases.csv')
 
-        if username in users and check_password_hash(users[username], password):
-            session["user"] = username
-            return redirect(url_for("home"))
-        else:
-            flash("Identifiants invalides")
+    # --- Init extensions ---
+    db.init_app(app)
+    #login_manager.init_app(app)
+    csrf.init_app(app)
 
-    return render_template("login.html")
+    # --- Routes ---
+    from routes import register_routes
+    register_routes(app)
 
-@app.route("/register", methods=["GET", "POST"])
-def register():
-    if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
-        users = load_users()
+    return app
 
-        if username in users:
-            flash("Utilisateur déjà existant")
-        else:
-            users[username] = generate_password_hash(password)
-            save_users(users)
-            flash("Compte créé, connecte-toi")
-            return redirect(url_for("login"))
 
-    return render_template("register.html")
-
-@app.route("/home")
-def home():
-    if "user" not in session:
-        return redirect(url_for("login"))
-    return render_template("home.html", user=session["user"])
-
-@app.route("/logout")
-def logout():
-    session.pop("user", None)
-    return redirect(url_for("login"))
-
-if __name__ == "__main__":
-    app.run(debug=True)
+# Exposé pour PythonAnywhere : from app import app as application
+app = create_app()
