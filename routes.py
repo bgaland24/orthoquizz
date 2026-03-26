@@ -28,7 +28,7 @@ def register_routes(app):
         return decorated
 
     # -----------------------------------------------------------------------
-    # Page d'accueil
+    # Accueil
     # -----------------------------------------------------------------------
 
     @app.route('/')
@@ -53,14 +53,14 @@ def register_routes(app):
                 flash('Erreur de sécurité, réessaie.', 'error')
                 return render_template('register.html', form=form)
 
-            login        = request.form.get('login',            '').strip()
-            age          = request.form.get('age',              '').strip()
-            email_parent = request.form.get('email_parent',     '').strip()
-            password     = request.form.get('password',         '')
+            login_val        = request.form.get('login',            '').strip()
+            age              = request.form.get('age',              '').strip()
+            email_parent     = request.form.get('email_parent',     '').strip()
+            password         = request.form.get('password',         '')
             password_confirm = request.form.get('password_confirm', '')
 
             errors = []
-            if len(login) < 3:
+            if len(login_val) < 3:
                 errors.append('Le pseudo doit faire au moins 3 caractères.')
             if not age.isdigit() or not (5 <= int(age) <= 18):
                 errors.append("L'âge doit être compris entre 5 et 18 ans.")
@@ -79,19 +79,17 @@ def register_routes(app):
             from models import User
             from app import db
 
-            if User.query.filter_by(login=login).first():
+            if User.query.filter_by(login=login_val).first():
                 flash('Ce pseudo est déjà pris, choisis-en un autre.', 'error')
                 return render_template('register.html', form=form)
 
-            user = User(
-                login=login,
+            db.session.add(User(
+                login=login_val,
                 age=int(age),
                 email_parent=email_parent,
                 password_hash=generate_password_hash(password)
-            )
-            db.session.add(user)
+            ))
             db.session.commit()
-
             flash('Compte créé ! Tu peux te connecter.', 'success')
             return redirect(url_for('login'))
 
@@ -113,13 +111,14 @@ def register_routes(app):
                 flash('Erreur de sécurité, réessaie.', 'error')
                 return render_template('login.html', form=form)
 
-            login_val = request.form.get('login', '').strip()
-            password  = request.form.get('password', '')
-
             from models import User
-            user = User.query.filter_by(login=login_val).first()
+            user = User.query.filter_by(
+                login=request.form.get('login', '').strip()
+            ).first()
 
-            if not user or not check_password_hash(user.password_hash, password):
+            if not user or not check_password_hash(
+                user.password_hash, request.form.get('password', '')
+            ):
                 flash('Pseudo ou mot de passe incorrect.', 'error')
                 return render_template('login.html', form=form)
 
@@ -140,7 +139,7 @@ def register_routes(app):
         return redirect(url_for('login'))
 
     # -----------------------------------------------------------------------
-    # Admin — login
+    # Admin
     # -----------------------------------------------------------------------
 
     @app.route('/admin/login', methods=['GET', 'POST'])
@@ -155,10 +154,8 @@ def register_routes(app):
                 flash('Erreur de sécurité, réessaie.', 'error')
                 return render_template('admin_login.html', form=form)
 
-            login_val = request.form.get('login', '').strip()
-            password  = request.form.get('password', '')
-
-            if login_val == app.config['ADMIN_LOGIN'] and password == app.config['ADMIN_PASSWORD']:
+            if (request.form.get('login', '').strip() == app.config['ADMIN_LOGIN'] and
+                    request.form.get('password', '') == app.config['ADMIN_PASSWORD']):
                 session['is_admin'] = True
                 return redirect(url_for('admin_dashboard'))
 
@@ -166,25 +163,14 @@ def register_routes(app):
 
         return render_template('admin_login.html', form=form)
 
-    # -----------------------------------------------------------------------
-    # Admin — dashboard
-    # -----------------------------------------------------------------------
-
     @app.route('/admin')
     @admin_required
     def admin_dashboard():
         from models import User, Phrase
-        form      = CsrfForm()
-        nb_phrases = Phrase.query.count()
-        nb_users   = User.query.count()
         return render_template('admin_dashboard.html',
-                               form=form,
-                               nb_phrases=nb_phrases,
-                               nb_users=nb_users)
-
-    # -----------------------------------------------------------------------
-    # Admin — rechargement CSV
-    # -----------------------------------------------------------------------
+                               form=CsrfForm(),
+                               nb_phrases=Phrase.query.count(),
+                               nb_users=User.query.count())
 
     @app.route('/admin/reload', methods=['POST'])
     @admin_required
@@ -194,20 +180,111 @@ def register_routes(app):
         flash(message, 'success' if succes else 'error')
         return redirect(url_for('admin_dashboard'))
 
-    # -----------------------------------------------------------------------
-    # Admin — déconnexion
-    # -----------------------------------------------------------------------
-
     @app.route('/admin/logout')
     def admin_logout():
         session.pop('is_admin', None)
         return redirect(url_for('admin_login'))
 
     # -----------------------------------------------------------------------
-    # Quiz home — stub
+    # Quiz
     # -----------------------------------------------------------------------
 
     @app.route('/quiz')
     @login_required
     def quiz_home():
-        return f'<h1>Bonjour {current_user.login} !</h1><a href="/logout">Déconnexion</a>'
+        from models import Phrase
+        return render_template('quiz_home.html',
+                               form=CsrfForm(),
+                               nb_questions=min(10, Phrase.query.count()))
+
+    @app.route('/quiz/start', methods=['POST'])
+    @login_required
+    def quiz_start():
+        if not CsrfForm().validate_on_submit():
+            flash('Erreur de sécurité.', 'error')
+            return redirect(url_for('quiz_home'))
+
+        from services import selectionner_phrases
+        phrases = selectionner_phrases(10)
+
+        if not phrases:
+            flash('Aucune phrase disponible. Contacte un administrateur.', 'error')
+            return redirect(url_for('quiz_home'))
+
+        session['quiz'] = {
+            'phrase_ids':    [p.id for p in phrases],
+            'current_index': 0,
+            'total_score':   0,
+            'nb_questions':  len(phrases),
+        }
+        return redirect(url_for('quiz_question'))
+
+    @app.route('/quiz/question')
+    @login_required
+    def quiz_question():
+        quiz = session.get('quiz')
+        if not quiz:
+            return redirect(url_for('quiz_home'))
+
+        from models import Phrase
+        from services import get_type_info
+
+        idx    = quiz['current_index']
+        phrase = Phrase.query.get(quiz['phrase_ids'][idx])
+
+        return render_template('quiz_question.html',
+                               form=CsrfForm(),
+                               phrase=phrase,
+                               words=phrase.texte.split(),
+                               question_num=idx + 1,
+                               total_questions=quiz['nb_questions'],
+                               is_last=(idx + 1 == quiz['nb_questions']),
+                               score=quiz['total_score'] if idx > 0 else None,
+                               type_info=get_type_info(phrase.difficulte))
+
+    @app.route('/quiz/answer', methods=['POST'])
+    @login_required
+    def quiz_answer():
+        if not CsrfForm().validate_on_submit():
+            flash('Erreur de sécurité.', 'error')
+            return redirect(url_for('quiz_question'))
+
+        quiz = session.get('quiz')
+        if not quiz:
+            return redirect(url_for('quiz_home'))
+
+        from models import Phrase
+        from services import calculer_points, sauvegarder_score
+
+        phrase = Phrase.query.get(quiz['phrase_ids'][quiz['current_index']])
+
+        try:
+            position_cliquee = int(request.form.get('position_cliquee', -1))
+            temps_restant    = max(0, int(request.form.get('temps_restant', 0)))
+        except ValueError:
+            position_cliquee, temps_restant = -1, 0
+
+        quiz['total_score']   += calculer_points(
+            phrase,
+            position_cliquee == phrase.position_mot,
+            temps_restant
+        )
+        quiz['current_index'] += 1
+        session['quiz']        = quiz
+
+        if quiz['current_index'] >= quiz['nb_questions']:
+            sauvegarder_score(current_user.id, quiz['total_score'])
+            session.pop('quiz', None)
+            return redirect(url_for('quiz_result'))
+
+        return redirect(url_for('quiz_question'))
+
+    @app.route('/quiz/result')
+    @login_required
+    def quiz_result():
+        from services import get_derniers_scores
+        derniers_scores = get_derniers_scores(current_user.id)
+        return render_template('quiz_result.html',
+                               form=CsrfForm(),
+                               score_final=derniers_scores[0].valeur if derniers_scores else 0,
+                               last_scores=derniers_scores)

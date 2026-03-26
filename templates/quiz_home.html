@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div style="text-align:center;">
+    <h2>Bonjour {{ current_user.login }} ! 👋</h2>
+
+    <div style="background:#f0f8ff; border-radius:10px; padding:20px; margin:20px 0; text-align:left;">
+        <p>🎯 <strong>{{ nb_questions }} phrases</strong> à corriger</p>
+        <p>🖱️ Clique sur le mot <strong>mal orthographié</strong></p>
+        <p>⏱️ Chaque phrase a son propre minuteur</p>
+        <p>⭐ Plus tu réponds vite, plus tu marques de points !</p>
+    </div>
+
+    {% if nb_questions == 0 %}
+        <p style="color:#e74c3c;">Aucune phrase disponible pour le moment. Reviens plus tard !</p>
+    {% else %}
+        <form method="POST" action="{{ url_for('quiz_start') }}">
+            {{ form.hidden_tag() }}
+            <button type="submit" style="font-size:18px; padding:16px;">
+                🚀 Démarrer le quiz !
+            </button>
+        </form>
+    {% endif %}
+
+    <p style="margin-top:20px;">
+        <a href="{{ url_for('logout') }}">Déconnexion</a>
+    </p>
+</div>
+
+{% endblock %}

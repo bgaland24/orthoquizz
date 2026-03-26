@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div style="text-align:center;">
+
+    <h2>Quiz terminé ! 🎉</h2>
+
+    <div style="background: linear-gradient(135deg, #667eea, #764ba2);
+                border-radius: 16px; padding: 24px; margin: 20px 0;
+                box-shadow: 0 8px 25px rgba(102,126,234,0.4);">
+        <div style="font-size: 56px; font-weight: 900; color: white;
+                    text-shadow: 0 0 20px rgba(255,255,255,0.5);">
+            {{ score_final }}
+        </div>
+        <div style="font-size: 16px; color: rgba(255,255,255,0.85);
+                    font-weight: bold; letter-spacing: 2px;">
+            POINTS
+        </div>
+    </div>
+
+    {% if last_scores | length > 1 %}
+    <h3>Tes derniers scores</h3>
+    <table style="width:100%; border-collapse:collapse; margin: 12px 0;">
+        <thead>
+            <tr style="background:#f0f0f0;">
+                <th style="padding:8px; text-align:center;"></th>
+                <th style="padding:8px; text-align:center;">Score</th>
+                <th style="padding:8px; text-align:center;">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for score in last_scores %}
+            <tr class="{% if loop.first %}score-first{% endif %}" style="border-bottom: 1px solid #eee;">
+                <td style="padding:8px; text-align:center;">
+                    {% if loop.first %}🏆{% else %}{{ loop.index }}{% endif %}
+                </td>
+                <td style="padding:8px; text-align:center;">{{ score.valeur }} pts</td>
+                <td style="padding:8px; text-align:center; font-size:13px; color:#666;">
+                    {{ score.date.strftime('%d/%m/%Y') }}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('quiz_start') }}" style="margin-top:20px;">
+        {{ form.hidden_tag() }}
+        <button type="submit" style="font-size:17px; padding:14px;">
+            🎮 Rejouer !
+        </button>
+    </form>
+
+    <p style="margin-top:16px;">
+        <a href="{{ url_for('logout') }}">Déconnexion</a>
+    </p>
+
+</div>
+
+{% endblock %}

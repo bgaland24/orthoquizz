@@ -1,6 +1,41 @@
-texte,mot_errone,position_mot,difficulte,temps_limite
-"Ce Pokémon crache du feu avec une grande puissanse","puissanse",8,3,20
-"Il se désplace à une vitesse incroyabe dans les airs","incroyabe",6,5,20
-"Sa carapase le protège de toutes les attaques ennemies","carapase",2,4,20
-"Il peut lancer des éclairs d'une puissance foudroyente","foudroyente",7,7,20
-"Ce Pokémon utilise ses télépathie pour lire dans les pensées","télépathie",4,6,20
+texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite
+"Ce Pokémon crache des flammes qui sont extrement puissantes","extrement","extrêmement",7,3,20
+"Il possède une carapace qui le protege de toutes les attaques","protege","protège",6,3,20
+"Ses ailes lui permettent de volé à une vitesse incroyable","volé","voler",5,1,20
+"Ce Pokémon ce nourrit exclusivement de lumière solaire","ce","se",2,5,20
+"Il a été aperçu dans les forêts humide du nord","humide","humides",7,5,20
+"Ses attaques sont tellement puissante qu on ne peut pas les esquiver","puissante","puissantes",4,6,20
+"Ce Pokémon légendaire a vécut plus de mille ans dans les montagnes","vécut","vécu",4,7,20
+"Il projette des éclairs sur ces ennemis pendant la nuit","ces","ses",5,6,20
+"Sa queue lui sert a se défendre contre les prédateurs","a","à",4,4,20
+"Ce Pokémon s est adapter parfaitement à son environnement glacial","adapter","adapté",4,7,20
+"Il dort pendant l hiver et se réveille au printant","printant","printemps",9,5,20
+"Ses cris résonnent dans les vallé et effraient ses adversaires","vallé","vallées",5,6,20
+"Ce Pokémon peut soulevé des rochers de plusieurs tonnes","soulevé","soulever",3,7,20
+"Il a développer un sixième sens pour détecter ses proies","développer","développé",2,8,20
+"Ses écailles sont aussi dur que du diamant","dur","dures",4,5,20
+"Ce Pokémon féroce chasse toujours seul dans les plaines ouvert","ouvert","ouvertes",9,6,20
+"Il génère un champ magnétique qui pertube les appareils électroniques","pertube","perturbe",6,7,20
+"Sa morsure est si puissant qu elle peut broyer du métal","puissant","puissante",4,7,20
+"Ce Pokémon communique avec ces congénères grâce à des ultrasons","ces","ses",4,5,20
+"Il pond ses oeufs dans les rivières pour que le courant les emportent","emportent","emporte",12,8,20
+"Sa peau change de couleurs selon les émotions qu il ressent","couleurs","couleur",4,4,20
+"Ce Pokémon est capable de courrire à cent kilomètres par heure","courrire","courir",5,8,20
+"Il stocke de l énergie dans sa queue et la relache pendant les combats","relache","relâche",10,6,20
+"Ses yeux lui permettent de voire dans le noir le plus complet","voire","voir",5,5,20
+"Ce Pokémon a mit des années à maîtriser ses pouvoirs psychiques","mit","mis",3,8,20
+"Il peut se rendraient invisible en modifiant la lumière autour de lui","rendraient","rendre",3,9,20
+"Sa salive est un poisson puissant qui paralyse ses ennemis en quelques secondes","poisson","poison",4,7,20
+"Ce Pokémon vit en groupe et défendent ensemble leur territoire","défendent","défend",6,8,20
+"Il absorbe la chaleur du soleil et la restitut sous forme d énergie","restitut","restitue",8,8,20
+"Ses tentacules peuvent s étirer jusqu à dix fois leurs longeur initiale","longeur","longueur",10,6,20
+"Ce Pokémon est redouté de tous ses adversaires car il ne ce fatigue jamais","ce","se",11,5,20
+"Il a été observé en train de soulever des rochers qu il lançait sur ces proies","ces","ses",14,6,20
+"Sa fourrure épaisse lui permet de résisté aux températures les plus extrêmes","résisté","résister",6,7,20
+"Ce Pokémon peux générer des vagues de chaleur qui font fondre la roche","peux","peut",2,6,20
+"Il marque son territoire en griffant les arbres avec ses serre acérées","serre","serres",10,5,20
+"Sa technique favorite consiste à attiré ses adversaires dans un piège","attiré","attirer",5,7,20
+"Ce Pokémon est le seul de son espèce a avoir survécu à l ère glaciaire","a","à",8,9,20
+"Il produit une lumière si intense qu elle peut être apercue à des kilomètres à la ronde","apercue","aperçue",10,4,20
+"Ses griffes sont si affilée qu elles peuvent trancher n importe quelle surface","affilée","affilées",4,7,20
+"Ce Pokémon a choisit ce territoire il y a plusieurs siècles et ne l a jamais quitté","choisit","choisi",3,9,20
