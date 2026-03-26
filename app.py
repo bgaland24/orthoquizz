@@ -1,7 +1,7 @@
 import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-#from flask_login import LoginManager
+from flask_login import LoginManager
 from flask_wtf.csrf import CSRFProtect
 from dotenv import load_dotenv
 
@@ -9,11 +9,11 @@ load_dotenv()  # Charge .env en local (ignoré si les variables sont déjà déf
 
 # --- Extensions ---
 db            = SQLAlchemy()
-#login_manager = LoginManager()
+login_manager = LoginManager()
 csrf          = CSRFProtect()
 
-#login_manager.login_view    = 'login'
-#login_manager.login_message = 'Connecte-toi pour accéder à cette page.'
+login_manager.login_view    = 'login'
+login_manager.login_message = 'Connecte-toi pour accéder à cette page.'
 
 
 def create_app() -> Flask:
@@ -29,12 +29,14 @@ def create_app() -> Flask:
 
     # --- Init extensions ---
     db.init_app(app)
-    #login_manager.init_app(app)
+    login_manager.init_app(app)
     csrf.init_app(app)
 
     # --- Routes ---
     from routes import register_routes
     register_routes(app)
+    
+    import models 
 
     return app
 
