@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Créer un compte</h2>
+
+<form method="POST">
+    {{ form.hidden_tag() }}
+
+    <label>Ton pseudo</label>
+    <input type="text" name="login" required minlength="3" maxlength="50">
+
+    <label>Ton âge</label>
+    <input type="number" name="age" required min="5" max="18">
+
+    <label>Email de tes parents</label>
+    <input type="email" name="email_parent" required>
+
+    <label>Mot de passe</label>
+    <input type="password" name="password" required minlength="6">
+
+    <label>Confirme ton mot de passe</label>
+    <input type="password" name="password_confirm" required minlength="6">
+
+    <button type="submit">Créer mon compte</button>
+</form>
+
+<p style="text-align:center; margin-top:20px;">
+    Déjà un compte ? <a href="{{ url_for('login') }}">Connecte-toi</a>
+</p>
+
+{% endblock %}
