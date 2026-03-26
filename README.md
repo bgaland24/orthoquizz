@@ -5,6 +5,10 @@
 ```bash
 pip install -r requirements.txt
 cp .env.example .env   # puis édite .env avec tes valeurs
+
+#si pertinent 
+python init_db.py
+
 python run.py
 ```
 
