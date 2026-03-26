@@ -1,26 +1,37 @@
 {% extends "base.html" %}
+
+{% block body_attrs %} class="dark-page"{% endblock %}
+
 {% block content %}
 
-<h2>Connexion</h2>
+<div class="home-title">
+    <span class="logo">📖</span>
+    <h1>ORTHOQUIZZ</h1>
+    <p class="tagline">Deviens le champion de l'orthographe !</p>
+</div>
 
-<form method="POST">
-    {{ form.hidden_tag() }}
+<div class="perks">
+    <span class="perk">👆 Clique sur l'erreur</span>
+    <span class="perk">⏱️ Contre la montre</span>
+    <span class="perk">⭐ Bats ton score</span>
+</div>
 
-    <label>Ton pseudo</label>
-    <input type="text" name="login" required>
+<div class="form-box">
+    <h2>Connexion</h2>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <label>Ton pseudo</label>
+        <input type="text" name="login" placeholder="ex : SuperHéros42" required autofocus>
+        <label>Mot de passe</label>
+        <input type="password" name="password" placeholder="••••••" required>
+        <button type="submit" class="action-btn">🎮 Jouer !</button>
+    </form>
+</div>
 
-    <label>Mot de passe</label>
-    <input type="password" name="password" required>
-
-    <button type="submit">Se connecter</button>
-</form>
-
-<p style="text-align:center; margin-top:20px;">
-    Pas encore de compte ? <a href="{{ url_for('register') }}">Crée-en un</a>
+<p class="subtle-link">
+    Pas encore de compte ? <a href="{{ url_for('register') }}">Inscris-toi ici</a>
 </p>
 
-<p style="text-align:center; margin-top:20px;">
-     <a href="{{ url_for('admin_login') }}">Login administrateur</a>
-</p>
+<a href="{{ url_for('admin_login') }}" class="admin-link">Accès administrateur</a>
 
 {% endblock %}

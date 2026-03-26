@@ -21,14 +21,14 @@ texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite
 "Il pond ses oeufs dans les rivières pour que le courant les emportent","emportent","emporte",12,8,20
 "Sa peau change de couleurs selon les émotions qu il ressent","couleurs","couleur",4,4,20
 "Ce Pokémon est capable de courrire à cent kilomètres par heure","courrire","courir",5,8,20
-"Il stocke de l énergie dans sa queue et la relache pendant les combats","relache","relâche",10,6,20
+"Il stocke de l'énergie dans sa queue et la relache pendant les combats","relache","relâche",10,6,20
 "Ses yeux lui permettent de voire dans le noir le plus complet","voire","voir",5,5,20
 "Ce Pokémon a mit des années à maîtriser ses pouvoirs psychiques","mit","mis",3,8,20
 "Il peut se rendraient invisible en modifiant la lumière autour de lui","rendraient","rendre",3,9,20
 "Sa salive est un poisson puissant qui paralyse ses ennemis en quelques secondes","poisson","poison",4,7,20
 "Ce Pokémon vit en groupe et défendent ensemble leur territoire","défendent","défend",6,8,20
 "Il absorbe la chaleur du soleil et la restitut sous forme d énergie","restitut","restitue",8,8,20
-"Ses tentacules peuvent s étirer jusqu à dix fois leurs longeur initiale","longeur","longueur",10,6,20
+"Ses tentacules peuvent s'étirer jusqu à dix fois leurs longeur initiale","longeur","longueur",10,6,20
 "Ce Pokémon est redouté de tous ses adversaires car il ne ce fatigue jamais","ce","se",11,5,20
 "Il a été observé en train de soulever des rochers qu il lançait sur ces proies","ces","ses",14,6,20
 "Sa fourrure épaisse lui permet de résisté aux températures les plus extrêmes","résisté","résister",6,7,20
@@ -36,6 +36,6 @@ texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite
 "Il marque son territoire en griffant les arbres avec ses serre acérées","serre","serres",10,5,20
 "Sa technique favorite consiste à attiré ses adversaires dans un piège","attiré","attirer",5,7,20
 "Ce Pokémon est le seul de son espèce a avoir survécu à l ère glaciaire","a","à",8,9,20
-"Il produit une lumière si intense qu elle peut être apercue à des kilomètres à la ronde","apercue","aperçue",10,4,20
+"Il produit une lumière si intense qu'elle peut être apercue à des kilomètres à la ronde","apercue","aperçue",10,4,20
 "Ses griffes sont si affilée qu elles peuvent trancher n importe quelle surface","affilée","affilées",4,7,20
-"Ce Pokémon a choisit ce territoire il y a plusieurs siècles et ne l a jamais quitté","choisit","choisi",3,9,20
+"Ce Pokémon a choisit ce territoire il y a plusieurs siècles et ne l'a jamais quitté","choisit","choisi",3,9,20

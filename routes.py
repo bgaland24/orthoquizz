@@ -54,18 +54,18 @@ def register_routes(app):
                 return render_template('register.html', form=form)
 
             login_val        = request.form.get('login',            '').strip()
-            age              = request.form.get('age',              '').strip()
-            email_parent     = request.form.get('email_parent',     '').strip()
+            # age              = request.form.get('age',              '').strip()
+            # email_parent     = request.form.get('email_parent',     '').strip()
             password         = request.form.get('password',         '')
             password_confirm = request.form.get('password_confirm', '')
 
             errors = []
             if len(login_val) < 3:
                 errors.append('Le pseudo doit faire au moins 3 caractères.')
-            if not age.isdigit() or not (5 <= int(age) <= 18):
-                errors.append("L'âge doit être compris entre 5 et 18 ans.")
-            if '@' not in email_parent:
-                errors.append("L'email des parents n'est pas valide.")
+            # if not age.isdigit() or not (5 <= int(age) <= 18):
+            #     errors.append("L'âge doit être compris entre 5 et 18 ans.")
+            # if '@' not in email_parent:
+            #     errors.append("L'email des parents n'est pas valide.")
             if len(password) < 6:
                 errors.append('Le mot de passe doit faire au moins 6 caractères.')
             if password != password_confirm:
@@ -85,8 +85,8 @@ def register_routes(app):
 
             db.session.add(User(
                 login=login_val,
-                age=int(age),
-                email_parent=email_parent,
+                # age=int(age),
+                # email_parent=email_parent,
                 password_hash=generate_password_hash(password)
             ))
             db.session.commit()
@@ -229,8 +229,10 @@ def register_routes(app):
         from models import Phrase
         from services import get_type_info
 
-        idx    = quiz['current_index']
-        phrase = Phrase.query.get(quiz['phrase_ids'][idx])
+        idx       = quiz['current_index']
+        phrase    = Phrase.query.get(quiz['phrase_ids'][idx])
+        type_info = get_type_info(phrase.difficulte)
+        pokemon_id = type_info['pokemon_ids'][phrase.id % len(type_info['pokemon_ids'])]
 
         return render_template('quiz_question.html',
                                form=CsrfForm(),
@@ -240,7 +242,8 @@ def register_routes(app):
                                total_questions=quiz['nb_questions'],
                                is_last=(idx + 1 == quiz['nb_questions']),
                                score=quiz['total_score'] if idx > 0 else None,
-                               type_info=get_type_info(phrase.difficulte))
+                               type_info=type_info,
+                               pokemon_id=pokemon_id)
 
     @app.route('/quiz/answer', methods=['POST'])
     @login_required
@@ -257,6 +260,15 @@ def register_routes(app):
         from services import calculer_points, sauvegarder_score
 
         phrase = Phrase.query.get(quiz['phrase_ids'][quiz['current_index']])
+
+        # Vérifie que la réponse correspond bien à la question en cours
+        # (contre le retour arrière navigateur pour re-répondre)
+        try:
+            submitted_phrase_id = int(request.form.get('phrase_id', -1))
+        except ValueError:
+            submitted_phrase_id = -1
+        if submitted_phrase_id != phrase.id:
+            return redirect(url_for('quiz_question'))
 
         try:
             position_cliquee = int(request.form.get('position_cliquee', -1))

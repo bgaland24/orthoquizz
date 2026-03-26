@@ -111,10 +111,12 @@
         color: rgba(255,255,255,0.12);
         letter-spacing: 4px;
     }
-    .pokemon-emoji {
-        font-size: 52px;
-        filter: drop-shadow(0 0 18px var(--type-color))
-                drop-shadow(0 0 35px var(--type-color));
+    .pokemon-img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        filter: drop-shadow(0 0 12px var(--type-color))
+                drop-shadow(0 0 25px var(--type-color));
         animation: pokemon-float 3s ease-in-out infinite;
         position: relative;
         z-index: 1;
@@ -357,7 +359,9 @@
         <div class="sparkles">
             <span>✦</span><span>✦</span><span>✦</span><span>✦</span>
         </div>
-        <div class="pokemon-emoji">{{ type_info.emoji }}</div>
+        <img class="pokemon-img"
+             src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{ pokemon_id }}.png"
+             alt="Pokémon {{ type_info.nom }}">
     </div>
     <div class="image-label">
         Pokémon {{ type_info.nom }} · Niv. {{ phrase.difficulte }} · Espèce Inconnue
@@ -431,6 +435,7 @@
       data-temps-limite="{{ phrase.temps_limite }}"
       data-mot-corrige="{{ phrase.mot_corrige }}">
     {{ form.hidden_tag() }}
+    <input type="hidden" name="phrase_id"         value="{{ phrase.id }}">
     <input type="hidden" name="position_cliquee" id="position_cliquee" value="-1">
     <input type="hidden" name="temps_restant"    id="temps_restant"    value="0">
     <button type="submit" id="nextBtn" class="next-btn hidden">

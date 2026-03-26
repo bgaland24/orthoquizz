@@ -49,6 +49,7 @@ def get_type_info(difficulte: int) -> dict:
             'couleur': '#A8A878',
             'emoji': '⭐',
             'faiblesse': '⚔️',
+            'pokemon_ids': [133, 143, 132, 174, 234],   # Evoli, Ronflex, Métamorph, Toudoudou, Cerfrousse
         }
     elif difficulte <= 4:
         return {
@@ -57,6 +58,7 @@ def get_type_info(difficulte: int) -> dict:
             'couleur': '#4a8f20',
             'emoji': '🌿',
             'faiblesse': '🔥',
+            'pokemon_ids': [1, 43, 69, 152, 187],       # Bulbizarre, Mystherbe, Chétiflor, Germignon, Houin
         }
     elif difficulte <= 6:
         return {
@@ -65,6 +67,7 @@ def get_type_info(difficulte: int) -> dict:
             'couleur': '#2255c0',
             'emoji': '💧',
             'faiblesse': '⚡',
+            'pokemon_ids': [7, 54, 79, 158, 183],       # Carapuce, Psykokwak, Ramoloss, Kaiminus, Marill
         }
     elif difficulte <= 8:
         return {
@@ -73,6 +76,7 @@ def get_type_info(difficulte: int) -> dict:
             'couleur': '#c05010',
             'emoji': '🔥',
             'faiblesse': '💧',
+            'pokemon_ids': [4, 37, 58, 155, 218],       # Salamèche, Goupix, Caninos, Héricendre, Limagma
         }
     else:
         return {
@@ -81,6 +85,7 @@ def get_type_info(difficulte: int) -> dict:
             'couleur': '#c01060',
             'emoji': '✨',
             'faiblesse': '👻',
+            'pokemon_ids': [63, 79, 151, 175, 196],     # Abra, Ramoloss, Mew, Togepi, Mentali
         }
 
 

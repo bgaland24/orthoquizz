@@ -1,30 +1,148 @@
 {% extends "base.html" %}
+
+{% block body_attrs %} class="dark-page"{% endblock %}
+
+{% block extra_styles %}
+<style>
+    .welcome-banner {
+        background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,215,0,0.05));
+        border: 1px solid rgba(255,215,0,0.3);
+        border-radius: 12px;
+        padding: 12px 16px;
+        text-align: center;
+        margin: 14px 0;
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    .welcome-banner span { color: #FFD700; }
+
+    .rules-title {
+        color: rgba(255,255,255,0.5);
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-align: center;
+        margin-bottom: 8px;
+    }
+    .rules-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+    .rule-card {
+        background: rgba(255,255,255,0.07);
+        border: 1px solid rgba(255,255,255,0.12);
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+    }
+    .rule-card .rule-icon { font-size: 22px; display: block; margin-bottom: 4px; }
+    .rule-card .rule-text { font-size: 11px; color: rgba(255,255,255,0.75); line-height: 1.4; }
+    .rule-card .rule-text strong { color: white; display: block; margin-bottom: 2px; font-size: 12px; }
+
+    .badge-strip {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+    .badge {
+        background: rgba(255,255,255,0.08);
+        border: 1px solid rgba(255,215,0,0.25);
+        border-radius: 20px;
+        padding: 5px 12px;
+        font-size: 12px;
+        color: rgba(255,255,255,0.7);
+    }
+    .badge strong { color: #FFD700; }
+
+    @keyframes pulse-start {
+        0%, 100% { box-shadow: 0 6px 20px rgba(255,215,0,0.4); transform: scale(1);    }
+        50%       { box-shadow: 0 8px 30px rgba(255,215,0,0.7); transform: scale(1.02); }
+    }
+    .action-btn { animation: pulse-start 1.8s ease-in-out infinite; font-size: 19px !important; }
+
+    .no-questions {
+        background: rgba(231,76,60,0.15);
+        border: 1px solid rgba(231,76,60,0.4);
+        border-radius: 10px;
+        padding: 14px;
+        color: #ff8a80;
+        text-align: center;
+        font-size: 14px;
+        margin-bottom: 16px;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 
-<div style="text-align:center;">
-    <h2>Bonjour {{ current_user.login }} ! 👋</h2>
-
-    <div style="background:#f0f8ff; border-radius:10px; padding:20px; margin:20px 0; text-align:left;">
-        <p>🎯 <strong>{{ nb_questions }} phrases</strong> à corriger</p>
-        <p>🖱️ Clique sur le mot <strong>mal orthographié</strong></p>
-        <p>⏱️ Chaque phrase a son propre minuteur</p>
-        <p>⭐ Plus tu réponds vite, plus tu marques de points !</p>
-    </div>
-
-    {% if nb_questions == 0 %}
-        <p style="color:#e74c3c;">Aucune phrase disponible pour le moment. Reviens plus tard !</p>
-    {% else %}
-        <form method="POST" action="{{ url_for('quiz_start') }}">
-            {{ form.hidden_tag() }}
-            <button type="submit" style="font-size:18px; padding:16px;">
-                🚀 Démarrer le quiz !
-            </button>
-        </form>
-    {% endif %}
-
-    <p style="margin-top:20px;">
-        <a href="{{ url_for('logout') }}">Déconnexion</a>
-    </p>
+<!-- Titre -->
+<div class="home-title">
+    <span class="logo">📖</span>
+    <h1>ORTHOQUIZZ</h1>
+    <p class="tagline">Deviens le champion de l'orthographe !</p>
 </div>
+
+<!-- Bienvenue -->
+<div class="welcome-banner">
+    Bonjour <span>{{ current_user.login }}</span> ! Prêt à jouer ? 👋
+</div>
+
+<!-- Règles -->
+<p class="rules-title">Comment jouer</p>
+<div class="rules-grid">
+    <div class="rule-card">
+        <span class="rule-icon">👀</span>
+        <div class="rule-text">
+            <strong>Lis la phrase</strong>
+            Un mot est mal orthographié
+        </div>
+    </div>
+    <div class="rule-card">
+        <span class="rule-icon">👆</span>
+        <div class="rule-text">
+            <strong>Clique dessus</strong>
+            Trouve le mot erroné
+        </div>
+    </div>
+    <div class="rule-card">
+        <span class="rule-icon">⏱️</span>
+        <div class="rule-text">
+            <strong>Fais vite !</strong>
+            Plus tu es rapide, plus tu marques
+        </div>
+    </div>
+    <div class="rule-card">
+        <span class="rule-icon">⭐</span>
+        <div class="rule-text">
+            <strong>Bats ton score</strong>
+            Reviens t'améliorer !
+        </div>
+    </div>
+</div>
+
+<!-- Infos partie -->
+<div class="badge-strip">
+    <div class="badge">📝 <strong>{{ nb_questions }}</strong> questions</div>
+    <div class="badge">🏆 Score en jeu</div>
+    <div class="badge">🎮 Un essai</div>
+</div>
+
+<!-- Démarrer -->
+{% if nb_questions == 0 %}
+    <div class="no-questions">
+        😴 Aucune phrase disponible pour le moment.<br>Reviens plus tard !
+    </div>
+{% else %}
+    <form method="POST" action="{{ url_for('quiz_start') }}">
+        {{ form.hidden_tag() }}
+        <button type="submit" class="action-btn">🚀 Démarrer le quiz !</button>
+    </form>
+{% endif %}
+
+<a href="{{ url_for('logout') }}" class="admin-link">Déconnexion</a>
 
 {% endblock %}

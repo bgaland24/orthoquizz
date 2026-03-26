@@ -8,8 +8,8 @@ class User(UserMixin, db.Model):
 
     id            = db.Column(db.Integer,     primary_key=True)
     login         = db.Column(db.String(50),  unique=True, nullable=False)
-    email_parent  = db.Column(db.String(120), nullable=False)
-    age           = db.Column(db.Integer,     nullable=False)
+    #email_parent  = db.Column(db.String(120), nullable=True)
+    #age           = db.Column(db.Integer,     nullable=True)
     password_hash = db.Column(db.String(256), nullable=False)
     scores        = db.relationship('Score', backref='user', lazy=True)
 
