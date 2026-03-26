@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Dashboard Admin</h2>
+
+<p>Phrases actuellement en base : <strong>{{ nb_phrases }}</strong></p>
+<p>Utilisateurs inscrits : <strong>{{ nb_users }}</strong></p>
+
+<hr style="margin: 24px 0;">
+
+<h3>Recharger les phrases</h3>
+<p style="color:#666; font-size:14px;">
+    Cette action supprime toutes les phrases existantes et les remplace
+    par le contenu du fichier <code>data/phrases.csv</code>.
+</p>
+
+<form method="POST" action="{{ url_for('admin_reload') }}">
+    {{ form.hidden_tag() }}
+    <button type="submit" style="background:#e74c3c;">
+        Recharger les phrases depuis le CSV
+    </button>
+</form>
+
+<hr style="margin: 24px 0;">
+
+<a href="{{ url_for('admin_logout') }}">Déconnexion admin</a>
+
+{% endblock %}
