@@ -97,6 +97,34 @@ def calculer_points(phrase: Phrase, reponse_correcte: bool, temps_restant: int) 
 # Quiz — informations visuelles selon la difficulté (style carte Pokémon)
 # ---------------------------------------------------------------------------
 
+POKEMON_NOMS = {
+    1:   'Bulbizarre',
+    4:   'Salamèche',
+    7:   'Carapuce',
+    37:  'Goupix',
+    43:  'Mystherbe',
+    54:  'Psykokwak',
+    58:  'Caninos',
+    63:  'Abra',
+    69:  'Chétiflor',
+    79:  'Ramoloss',
+    132: 'Métamorph',
+    133: 'Évoli',
+    143: 'Ronflex',
+    151: 'Mew',
+    152: 'Germignon',
+    155: 'Héricendre',
+    158: 'Kaiminus',
+    174: 'Toudoudou',
+    175: 'Togepi',
+    183: 'Marill',
+    187: 'Houin',
+    196: 'Mentali',
+    218: 'Limagma',
+    234: 'Cerfrousse',
+}
+
+
 def get_type_info(difficulte: int) -> dict:
     """Retourne le thème visuel de la carte selon la difficulté."""
     if difficulte <= 2:

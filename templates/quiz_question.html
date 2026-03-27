@@ -346,7 +346,7 @@
 
     <!-- Header -->
     <div class="card-header">
-        <div class="pokemon-name">Orthomon</div>
+        <div class="pokemon-name">{{ pokemon_nom }}</div>
         <div class="hp-group">
             <span class="hp-label">PV</span>
             <span class="hp-value">{{ phrase.difficulte * 10 }}</span>
@@ -361,10 +361,10 @@
         </div>
         <img class="pokemon-img"
              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{ pokemon_id }}.png"
-             alt="Pokémon {{ type_info.nom }}">
+             alt="{{ pokemon_nom }}">
     </div>
     <div class="image-label">
-        Pokémon {{ type_info.nom }} · Niv. {{ phrase.difficulte }} · Espèce Inconnue
+        {{ pokemon_nom }} · Type {{ type_info.nom }} · Niv. {{ phrase.difficulte }}
     </div>
 
     <!-- Pouvoir -->

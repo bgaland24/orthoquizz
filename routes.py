@@ -227,12 +227,13 @@ def register_routes(app):
             return redirect(url_for('quiz_home'))
 
         from models import Phrase
-        from services import get_type_info
+        from services import get_type_info, POKEMON_NOMS
 
-        idx       = quiz['current_index']
-        phrase    = Phrase.query.get(quiz['phrase_ids'][idx])
-        type_info = get_type_info(phrase.difficulte)
+        idx        = quiz['current_index']
+        phrase     = Phrase.query.get(quiz['phrase_ids'][idx])
+        type_info  = get_type_info(phrase.difficulte)
         pokemon_id = type_info['pokemon_ids'][phrase.id % len(type_info['pokemon_ids'])]
+        pokemon_nom = POKEMON_NOMS.get(pokemon_id, 'Mystérieux')
 
         response = render_template('quiz_question.html',
                                form=CsrfForm(),
@@ -243,7 +244,8 @@ def register_routes(app):
                                is_last=(idx + 1 == quiz['nb_questions']),
                                score=quiz['total_score'] if idx > 0 else None,
                                type_info=type_info,
-                               pokemon_id=pokemon_id)
+                               pokemon_id=pokemon_id,
+                               pokemon_nom=pokemon_nom)
         from flask import make_response
         resp = make_response(response)
         resp.headers['Cache-Control'] = 'no-store'
