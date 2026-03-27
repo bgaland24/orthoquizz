@@ -205,7 +205,7 @@ def register_routes(app):
             return redirect(url_for('quiz_home'))
 
         from services import selectionner_phrases
-        phrases = selectionner_phrases(10)
+        phrases = selectionner_phrases(10, user_id=current_user.id)
 
         if not phrases:
             flash('Aucune phrase disponible. Contacte un administrateur.', 'error')
@@ -234,7 +234,7 @@ def register_routes(app):
         type_info = get_type_info(phrase.difficulte)
         pokemon_id = type_info['pokemon_ids'][phrase.id % len(type_info['pokemon_ids'])]
 
-        return render_template('quiz_question.html',
+        response = render_template('quiz_question.html',
                                form=CsrfForm(),
                                phrase=phrase,
                                words=phrase.texte.split(),
@@ -244,6 +244,10 @@ def register_routes(app):
                                score=quiz['total_score'] if idx > 0 else None,
                                type_info=type_info,
                                pokemon_id=pokemon_id)
+        from flask import make_response
+        resp = make_response(response)
+        resp.headers['Cache-Control'] = 'no-store'
+        return resp
 
     @app.route('/quiz/answer', methods=['POST'])
     @login_required

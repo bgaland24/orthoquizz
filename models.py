@@ -28,10 +28,11 @@ class Phrase(db.Model):
     id           = db.Column(db.Integer,     primary_key=True)
     texte        = db.Column(db.String(500), nullable=False)
     mot_errone   = db.Column(db.String(100), nullable=False)
-    mot_corrige  = db.Column(db.String(100), nullable=False)   # ← nouveau
+    mot_corrige  = db.Column(db.String(100), nullable=False)
     position_mot = db.Column(db.Integer,     nullable=False)
     difficulte   = db.Column(db.Integer,     nullable=False)
     temps_limite = db.Column(db.Integer,     nullable=False)
+    groupe       = db.Column(db.String(50),  nullable=True)   # regroupe les variantes d'une même phrase
 
     def __repr__(self):
         return f'<Phrase {self.id} - diff:{self.difficulte}>'

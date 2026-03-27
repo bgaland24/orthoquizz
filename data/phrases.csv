@@ -1,41 +1,91 @@
-texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite
-"Ce Pokémon crache des flammes qui sont extrement puissantes","extrement","extrêmement",7,3,20
-"Il possède une carapace qui le protege de toutes les attaques","protege","protège",6,3,20
-"Ses ailes lui permettent de volé à une vitesse incroyable","volé","voler",5,1,20
-"Ce Pokémon ce nourrit exclusivement de lumière solaire","ce","se",2,5,20
-"Il a été aperçu dans les forêts humide du nord","humide","humides",7,5,20
-"Ses attaques sont tellement puissante qu on ne peut pas les esquiver","puissante","puissantes",4,6,20
-"Ce Pokémon légendaire a vécut plus de mille ans dans les montagnes","vécut","vécu",4,7,20
-"Il projette des éclairs sur ces ennemis pendant la nuit","ces","ses",5,6,20
-"Sa queue lui sert a se défendre contre les prédateurs","a","à",4,4,20
-"Ce Pokémon s est adapter parfaitement à son environnement glacial","adapter","adapté",4,7,20
-"Il dort pendant l hiver et se réveille au printant","printant","printemps",9,5,20
-"Ses cris résonnent dans les vallé et effraient ses adversaires","vallé","vallées",5,6,20
-"Ce Pokémon peut soulevé des rochers de plusieurs tonnes","soulevé","soulever",3,7,20
-"Il a développer un sixième sens pour détecter ses proies","développer","développé",2,8,20
-"Ses écailles sont aussi dur que du diamant","dur","dures",4,5,20
-"Ce Pokémon féroce chasse toujours seul dans les plaines ouvert","ouvert","ouvertes",9,6,20
-"Il génère un champ magnétique qui pertube les appareils électroniques","pertube","perturbe",6,7,20
-"Sa morsure est si puissant qu elle peut broyer du métal","puissant","puissante",4,7,20
-"Ce Pokémon communique avec ces congénères grâce à des ultrasons","ces","ses",4,5,20
-"Il pond ses oeufs dans les rivières pour que le courant les emportent","emportent","emporte",12,8,20
-"Sa peau change de couleurs selon les émotions qu il ressent","couleurs","couleur",4,4,20
-"Ce Pokémon est capable de courrire à cent kilomètres par heure","courrire","courir",5,8,20
-"Il stocke de l'énergie dans sa queue et la relache pendant les combats","relache","relâche",10,6,20
-"Ses yeux lui permettent de voire dans le noir le plus complet","voire","voir",5,5,20
-"Ce Pokémon a mit des années à maîtriser ses pouvoirs psychiques","mit","mis",3,8,20
-"Il peut se rendraient invisible en modifiant la lumière autour de lui","rendraient","rendre",3,9,20
-"Sa salive est un poisson puissant qui paralyse ses ennemis en quelques secondes","poisson","poison",4,7,20
-"Ce Pokémon vit en groupe et défendent ensemble leur territoire","défendent","défend",6,8,20
-"Il absorbe la chaleur du soleil et la restitut sous forme d énergie","restitut","restitue",8,8,20
-"Ses tentacules peuvent s'étirer jusqu à dix fois leurs longeur initiale","longeur","longueur",10,6,20
-"Ce Pokémon est redouté de tous ses adversaires car il ne ce fatigue jamais","ce","se",11,5,20
-"Il a été observé en train de soulever des rochers qu il lançait sur ces proies","ces","ses",14,6,20
-"Sa fourrure épaisse lui permet de résisté aux températures les plus extrêmes","résisté","résister",6,7,20
-"Ce Pokémon peux générer des vagues de chaleur qui font fondre la roche","peux","peut",2,6,20
-"Il marque son territoire en griffant les arbres avec ses serre acérées","serre","serres",10,5,20
-"Sa technique favorite consiste à attiré ses adversaires dans un piège","attiré","attirer",5,7,20
-"Ce Pokémon est le seul de son espèce a avoir survécu à l ère glaciaire","a","à",8,9,20
-"Il produit une lumière si intense qu'elle peut être apercue à des kilomètres à la ronde","apercue","aperçue",10,4,20
-"Ses griffes sont si affilée qu elles peuvent trancher n importe quelle surface","affilée","affilées",4,7,20
-"Ce Pokémon a choisit ce territoire il y a plusieurs siècles et ne l'a jamais quitté","choisit","choisi",3,9,20
+texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite,groupe
+"Ce Pokémon crache des flammes qui sont extrement puissantes","extrement","extrêmement",7,3,20,
+"Il possède une carapace qui le protege de toutes les attaques","protege","protège",6,3,20,
+"Ses ailes lui permettent de volé à une vitesse incroyable","volé","voler",5,1,20,
+"Ce Pokémon ce nourrit exclusivement de lumière solaire","ce","se",2,5,20,
+"Il a été aperçu dans les forêts humide du nord","humide","humides",3,5,20,
+"Ses attaques sont tellement puissante qu on ne peut pas les esquiver","puissante","puissantes",3,6,20,
+"Ce Pokémon légendaire a vécut plus de mille ans dans les montagnes","vécut","vécu",4,7,20,
+"Il projette des éclairs sur ces ennemis pendant la nuit","ces","ses",5,6,20,
+"Sa queue lui sert a se défendre contre les prédateurs","a","à",5,4,20,
+"Ce Pokémon s est adapter parfaitement à son environnement glacial","adapter","adapté",4,7,20,
+"Il dort pendant l'hiver et se réveille au printant","printant","printemps",8,5,20,
+"Ses cris résonnent dans les vallé et effraient ses adversaires","vallé","vallées",5,6,20,
+"Ce Pokémon peut soulevé des rochers de plusieurs tonnes","soulevé","soulever",3,7,20,
+"Il a développer un sixième sens pour détecter ses proies","développer","développé",4,8,20,
+"Ses écailles sont aussi dur que du diamant","dur","dures",2,5,20,
+"Ce Pokémon féroce chasse toujours seul dans les plaines ouvert","ouvert","ouvertes",9,6,20,
+"Il génère un champ magnétique qui pertube les appareils électroniques","pertube","perturbe",6,7,20,
+"Sa morsure est si puissant qu elle peut broyer du métal","puissant","puissante",4,7,20,
+"Ce Pokémon communique avec ces congénères grâce à des ultrasons","ces","ses",4,5,20,
+"Il pond ses oeufs dans les rivières pour que le courant les emportent","emportent","emporte",12,8,20,
+"Sa peau change de couleurs selon les émotions qu il ressent","couleurs","couleur",4,4,20,
+"Ce Pokémon est capable de courrire à cent kilomètres par heure","courrire","courir",5,8,20,
+"Il stocke de l'énergie dans sa queue et la relache pendant les combats","relache","relâche",7,6,20,
+"Ses yeux lui permettent de voire dans le noir le plus complet","voire","voir",5,5,20,
+"Ce Pokémon a mit des années à maîtriser ses pouvoirs psychiques","mit","mis",3,8,20,
+"Il peut se rendraient invisible en modifiant la lumière autour de lui","rendraient","rendre",3,3,20,
+"Sa salive est un poisson puissant qui paralyse ses ennemis en quelques secondes","poisson","poison",4,7,20,
+"Ce Pokémon vit en groupe et défendent ensemble leur territoire","défendent","défend",6,8,20,
+"Il absorbe la chaleur du soleil et la restitut sous forme d énergie","restitut","restitue",8,8,20,
+"Ses tentacules peuvent s'étirer jusqu à dix fois leurs longeur initiale","longeur","longueur",10,6,20,
+"Ce Pokémon est redouté de tous ses adversaires car il ne ce fatigue jamais","ce","se",11,5,20,
+"Il a été observé en train de soulever des rochers qu'il lançait sur ces proies","ces","ses",13,6,20,
+"Sa fourrure épaisse lui permet de résisté aux températures les plus extrêmes","résisté","résister",6,7,20,
+"Ce Pokémon peux générer des vagues de chaleur qui font fondre la roche","peux","peut",2,6,20,
+"Il marque son territoire en griffant les arbres avec ses serre acérées","serre","serres",10,5,20,
+"Sa technique favorite consiste à attiré ses adversaires dans un piège","attiré","attirer",5,7,20,
+"Ce Pokémon est le seul de son espèce a avoir survécu à l'ère glaciaire","a","à",8,6,20,
+"Il produit une lumière si intense qu'elle peut être apercue à des kilomètres à la ronde","apercue","aperçue",10,6,20,
+"Ses griffes sont si afutée qu elles peuvent trancher n importe quelle surface","afutée","afutées",4,7,20,
+"Ce Pokémon a choisit ce territoire il y a plusieurs siècles et ne l'a jamais quitté","choisit","choisi",3,9,20,
+"Il crache du feu très chaud sur les frites de ses ennemis affamé.","affamé","affamés",12,4,20,"g01"
+"Il crache du feu très chaud sur les frites de ces ennemis affamés.","ces","ses",10,5,20,"g01"
+"Il crache du feu très chaud sur les frites de ses enemis affamés.","enemis","ennemis",11,6,20,"g01"
+"Il crache du feu très chau sur les frites de ses ennemis affamés.","chau","chaud",5,4,20,"g01"
+"Il craches du feu très chaud sur les frites de ses ennemis affamés.","craches","crache",1,4,20,"g01"
+"Elle ronfle si fort la nuit que tous les voisins porte des bouchons.","porte","portent",9,5,20,"g02"
+"Elle ronfle si for la nuit que tous les voisins portent des bouchons.","for","fort",3,4,20,"g02"
+"Elle ronflent si fort la nuit que tous les voisins portent des bouchons.","ronflent","ronfle",1,4,20,"g02"
+"Elle ronfle si fort la nuit que tout les voisins portent des bouchons.","tout","tous",7,6,20,"g02"
+"Elle ronfle si fort la nuit que tous les voisains portent des bouchons.","voisains","voisins",9,5,20,"g02"
+"Ce Pokémon mange toujour trop vite et tombe souvent sur le ventre.","toujour","toujours",3,4,20,"g03"
+"Ce Pokémon mange toujours trop vite et tombe souvant sur le ventre.","souvant","souvent",8,4,20,"g03"
+"Ce Pokémon manges toujours trop vite et tombe souvent sur le ventre.","manges","mange",2,5,20,"g03"
+"Ce Pokémon mange toujours trop vite et tombe souvent sur le vantre.","vantre","ventre",11,4,20,"g03"
+"Ce Pokémon mange toujours trop vite et tombent souvent sur le ventre.","tombent","tombe",7,5,20,"g03"
+"Il court trés vite mais trébuche toujours sur sa propre queue immense.","très","très",2,5,20,"g04"
+"Il court très vite mais trebuche toujours sur sa propre queue immense.","trebuche","trébuche",5,6,20,"g04"
+"Il court très vite mais trébuche toujours sur sa propre queue imense.","imense","immense",11,5,20,"g04"
+"Il court très vite mais trébuche toujours sur sa propre que immense.","que","queue",10,5,20,"g04"
+"Il cour très vite mais trébuche toujours sur sa propre queue immense.","cour","court",1,5,20,"g04"
+"Elle éternu si fort que ses amis volent jusqu'aux nuages tout blancs.","éternu","éternue",1,5,20,"g05"
+"Elle éternue si fort que ses amis volent jusqu'aux nuages tout blans.","blans","blancs",11,5,20,"g05"
+"Elle éternue si fort que ses amis volent jusqu'aux nuages tout blanc.","blanc","blancs",11,5,20,"g05"
+"Elle éternue si fort que ses amis volent jusqu'aux nuages tous blancs.","tous","tout",10,6,20,"g05"
+"Elle éternue si fort que ses amis volent juscaux nuages tout blancs.","juscaux","jusqu'aux",8,4,20,"g05"
+"Ce Pokémon glouton avalle ses adversaires entiers et les recrache bien baveux.","avalle","avale",4,6,20,"g06"
+"Ce Pokémon glouton avale ses adversaires entiers et les recrache bien baveu.","baveu","baveux",11,6,20,"g06"
+"Ce Pokémon glouton avale ses adversaires entier et les recrache bien baveux.","entier","entiers",6,6,20,"g06"
+"Ce Pokémon glouton avale ses adversères entiers et les recrache bien baveux.","adversères","adversaires",5,6,20,"g06"
+"Ce Pokémon glouton avale ses adversaires entiers et les recrachent bien baveux.","recrachent","recrache",8,7,20,"g06"
+"Elle produit des éclairs fulgurents mais a souvent peur de son ombre.","fulgurents","fulgurants",4,6,20,"g07"
+"Elle produit des éclairs fulgurants mais a souvant peur de son ombre.","souvant","souvent",6,6,20,"g07"
+"Elle produit des éclairs fulgurant mais a souvent peur de son ombre.","fulgurant","fulgurants",4,6,20,"g07"
+"Elle produit des éclairs fulgurants mais a souvent peur de sont ombre.","sont","son",10,5,20,"g07"
+"Elle produit des éclairs fulgurants mais à souvent peur de son ombre.","à","a",6,6,20,"g07"
+"Il lanse des boules de glace parfaites mais rate toujours sa cible.","lanse","lance",1,5,20,"g08"
+"Il lance des boules de glace parfaites mais rate toujours ça cible.","ça","sa",10,5,20,"g08"
+"Il lance des boules de glace parfètes mais rate toujours sa cible.","parfètes","parfaites",6,6,20,"g08"
+"Il lance des boules de glace parfaites mais ratent toujours sa cible.","ratent","rate",8,6,20,"g08"
+"Il lance des boules de glasse parfaites mais rate toujours sa cible.","glasse","glace",5,5,20,"g08"
+"Ce Pokémon endormi ronfle si bruyament que les montagnes voisines tremblent fortement.","bruyament","bruyamment",5,6,20,"g09"
+"Ce Pokémon endormi ronfle si bruyamment que les montagnes voisines tremble fortement.","tremble","tremblent",10,6,20,"g09"
+"Ce Pokémon endormi ronfle si bruyamment que les montagnes voisines tremblent fortemant.","fortemant","fortement",11,6,20,"g09"
+"Ce Pokémon endormit ronfle si bruyamment que les montagnes voisines tremblent fortement.","endormit","endormi",2,7,20,"g09"
+"Ce Pokémon endormi ronfles si bruyamment que les montagnes voisines tremblent fortement.","ronfles","ronfle",3,6,20,"g09"
+"Elle agite ces grandes oreilles poilues pour refroidir ses copains épuisés.","ces","ses",2,6,20,"g10"
+"Elle agite ses grandes oreilles poilus pour refroidir ses copains épuisés.","poilus","poilues",5,6,20,"g10"
+"Elle agite ses grandes oreilles poilues pour refroidir ces copains épuisés.","ces","ses",8,6,20,"g10"
+"Elle agite ses grendes oreilles poilues pour refroidir ses copains épuisés.","grendes","grandes",3,5,20,"g10"
+"Elle agite ses grandes oreilles poilues pour refroidir ses copins épuisés.","copins","copains",9,6,20,"g10"

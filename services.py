@@ -1,6 +1,7 @@
 import csv
 import os
 import random
+from collections import defaultdict
 from models import Phrase, Score
 from app import db
 
@@ -9,15 +10,71 @@ from app import db
 # Quiz — sélection des phrases
 # ---------------------------------------------------------------------------
 
-def selectionner_phrases(n: int = 10) -> list:
+def _un_par_groupe(phrases: list) -> list:
     """
-    Sélectionne n phrases au hasard dans la base.
-    Fonctionne même avec une seule phrase disponible.
+    À partir d'une liste de phrases, retourne une liste où chaque groupe
+    n'est représenté qu'une seule fois (choix aléatoire dans le groupe).
+    Les phrases sans groupe sont toutes conservées.
     """
-    phrases = Phrase.query.all()
-    if not phrases:
+    groupes = defaultdict(list)
+    sans_groupe = []
+    for p in phrases:
+        if p.groupe:
+            groupes[p.groupe].append(p)
+        else:
+            sans_groupe.append(p)
+    return sans_groupe + [random.choice(g) for g in groupes.values()]
+
+
+def selectionner_phrases(n: int = 10, user_id: int = None) -> list:
+    """
+    Sélectionne n phrases adaptées au niveau du joueur, sans jamais
+    proposer deux variantes d'une même phrase dans la même session.
+
+    Règles (basées sur le score max du joueur) :
+      - >= 700 pts  → phrases de difficulté >= 7
+      - 400–699 pts → phrases de difficulté >= 4
+      - < 400 pts   → phrases de difficulté <= 3
+    Si la sélection ciblée est insuffisante, on complète avec d'autres
+    phrases (en respectant toujours la contrainte de groupe).
+    """
+    if not Phrase.query.count():
         return []
-    return random.sample(phrases, min(n, len(phrases)))
+
+    # Détermine la difficulté cible selon le score max du joueur
+    score_max = 0
+    if user_id is not None:
+        top = (Score.query
+                    .filter_by(user_id=user_id)
+                    .order_by(Score.valeur.desc())
+                    .first())
+        if top:
+            score_max = top.valeur
+
+    if score_max >= 700:
+        pool_cible = Phrase.query.filter(Phrase.difficulte >= 7).all()
+    elif score_max >= 400:
+        pool_cible = Phrase.query.filter(Phrase.difficulte >= 4).all()
+    else:
+        pool_cible = Phrase.query.filter(Phrase.difficulte <= 3).all()
+
+    # Un seul représentant par groupe dans le pool ciblé
+    pool_reduit = _un_par_groupe(pool_cible)
+    random.shuffle(pool_reduit)
+    selection = pool_reduit[:n]
+
+    # Complète si nécessaire en respectant les groupes déjà représentés
+    if len(selection) < n:
+        ids_selectionnes  = {p.id for p in selection}
+        groupes_deja      = {p.groupe for p in selection if p.groupe}
+        reste             = Phrase.query.filter(Phrase.id.notin_(ids_selectionnes)).all()
+        # Exclure les groupes déjà présents dans la sélection
+        reste_filtre      = [p for p in reste if not p.groupe or p.groupe not in groupes_deja]
+        pool_complement   = _un_par_groupe(reste_filtre)
+        manquants         = n - len(selection)
+        selection        += random.sample(pool_complement, min(manquants, len(pool_complement)))
+
+    return selection
 
 
 # ---------------------------------------------------------------------------
@@ -32,8 +89,8 @@ def calculer_points(phrase: Phrase, reponse_correcte: bool, temps_restant: int) 
     """
     if not reponse_correcte:
         return 0
-    bonus_temps = temps_restant / phrase.temps_limite
-    return round(phrase.difficulte * (1 + bonus_temps))
+    bonus_temps = min(0.90, temps_restant / phrase.temps_limite)
+    return round(phrase.difficulte * (1 + bonus_temps))*10
 
 
 # ---------------------------------------------------------------------------
@@ -157,6 +214,7 @@ def recharger_phrases(csv_path: str) -> tuple[bool, str]:
                     position_mot = position_mot,
                     difficulte   = difficulte,
                     temps_limite = temps_limite,
+                    groupe       = row.get('groupe', '').strip() or None,
                 ))
 
             except (ValueError, KeyError) as e:
