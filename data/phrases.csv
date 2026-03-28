@@ -28,7 +28,7 @@ texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite,groupe
 "Sa salive est un poisson puissant qui paralyse ses ennemis en quelques secondes","poisson","poison",4,7,20,
 "Ce Pokémon vit en groupe et défendent ensemble leur territoire","défendent","défend",6,8,20,
 "Il absorbe la chaleur du soleil et la restitut sous forme d énergie","restitut","restitue",8,8,20,
-"Ses tentacules peuvent s'étirer jusqu à dix fois leurs longeur initiale","longeur","longueur",10,6,20,
+"Ses tentacules peuvent s'étirer jusqu à dix fois leurs longeur initiale","longeur","longueur",9,6,20,
 "Ce Pokémon est redouté de tous ses adversaires car il ne ce fatigue jamais","ce","se",11,5,20,
 "Il a été observé en train de soulever des rochers qu'il lançait sur ces proies","ces","ses",13,6,20,
 "Sa fourrure épaisse lui permet de résisté aux températures les plus extrêmes","résisté","résister",6,7,20,
