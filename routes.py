@@ -195,9 +195,11 @@ def register_routes(app):
     @login_required
     def quiz_home():
         from models import Phrase
+        from services import get_top10_classement
         return render_template('quiz_home.html',
                                form=CsrfForm(),
-                               nb_questions=min(10, Phrase.query.count()))
+                               nb_questions=min(10, Phrase.query.count()),
+                               top10=get_top10_classement(current_user.id))
 
     @app.route('/quiz/start', methods=['POST'])
     @login_required

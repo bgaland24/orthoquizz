@@ -261,6 +261,33 @@ def get_voisins_classement(user_id: int, n: int = 2) -> list:
     ]
 
 
+def get_top10_classement(user_id: int) -> list:
+    """
+    Retourne le top 10 des joueurs par meilleur score.
+    Chaque entrée : {'rang': int, 'login': str, 'top_score': int, 'is_current': bool}
+    """
+    from models import User
+    from sqlalchemy import func
+
+    top_scores = (
+        db.session.query(User.id, User.login, func.max(Score.valeur).label('top_score'))
+        .join(Score, Score.user_id == User.id)
+        .group_by(User.id)
+        .order_by(func.max(Score.valeur).desc())
+        .limit(10)
+        .all()
+    )
+    return [
+        {
+            'rang':       i + 1,
+            'login':      row.login,
+            'top_score':  row.top_score,
+            'is_current': row.id == user_id,
+        }
+        for i, row in enumerate(top_scores)
+    ]
+
+
 # ---------------------------------------------------------------------------
 # Admin — rechargement du CSV
 # ---------------------------------------------------------------------------
