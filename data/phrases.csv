@@ -12,7 +12,7 @@ texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite,groupe
 "Il dort pendant l'hiver et se réveille au printant","printant","printemps",8,5,20,
 "Ses cris résonnent dans les vallé et effraient ses adversaires","vallé","vallées",5,6,20,
 "Ce Pokémon peut soulevé des rochers de plusieurs tonnes","soulevé","soulever",3,7,20,
-"Il a développer un sixième sens pour détecter ses proies","développer","développé",4,8,20,
+"Il a développer un sixième sens pour détecter ses proies","développer","développé",2,8,20,
 "Ses écailles sont aussi dur que du diamant","dur","dures",2,5,20,
 "Ce Pokémon féroce chasse toujours seul dans les plaines ouvert","ouvert","ouvertes",9,6,20,
 "Il génère un champ magnétique qui pertube les appareils électroniques","pertube","perturbe",6,7,20,
@@ -89,3 +89,28 @@ texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite,groupe
 "Elle agite ses grandes oreilles poilues pour refroidir ces copains épuisés.","ces","ses",8,6,20,"g10"
 "Elle agite ses grendes oreilles poilues pour refroidir ses copains épuisés.","grendes","grandes",3,5,20,"g10"
 "Elle agite ses grandes oreilles poilues pour refroidir ses copins épuisés.","copins","copains",9,6,20,"g10"
+"Il hipnotise facilement ses ennemis vaincus et leur ordonne de danser la samba.","hipnotise","hyptontise",1,8,20,"g11"
+"Il hypnotise facilement ses ennemis vaincu et leur ordonne de danser la samba.","vaincu","vaincus",5,6,20,"g11"
+"Il hypnotise facilement ses ennemis vaincus et leur ordonnent de danser la samba.","ordonnent","ordonne",8,7,20,"g11"
+"Il hypnotise facilement ses ennemis vaincus et leur ordonne de dansé la samba.","dansé","danser",11,7,20,"g11"
+"Il hypnotise fassilement ses ennemis vaincus et leur ordonne de danser la samba.","fassilement","facilement",2,6,20,"g11"
+"Ce Pokémon invisible renverse toujours maladroitemant ses proies étonnées de ne pas le voir arriver.","maladroitemant","maladroitement",5,7,20,"g12"
+"Ce Pokémon invisible renverse toujours maladroitement ses proies étonnées de ne pas le voir arrivé.","arrivé","arriver",14,7,20,"g12"
+"Ce Pokémon invisible renverse toujours maladriotement ses proies étonnées de ne pas le voir arriver.","maladriotement","maladroitement",5,7,20,"g12"
+"Ce Pokémon invisible renverse toujours maladroitement ses proies étonnés de ne pas le voir arriver.","étonnés","étonnées",8,7,20,"g12"
+"Ce Pokémon invisible renverse toujours maladroitement ses proies etonnées de ne pas le voir arriver.","etonnées","étonnées",8,8,20,"g12"
+"Elle crache du venin verdatre sur quiconque ose toucher ses précieux œufs en chocolat.","verdatre","verdâtre",4,9,20,"g13"
+"Elle crache du venin verdâtre sur quiconque ose toucher ces précieux œufs en chocolat.","ces","ses",9,8,20,"g13"
+"Elle crache du venin verdâtre sur quiquonque ose toucher ses précieux œufs en chocolat.","quiquonque","quiconque",6,7,20,"g13"
+"Elle crache du venin verdâtre sur quiconque ose toucher ses précieux œufs en chocola.","chocola","chocolat",13,6,20,"g13"
+"Elle crache du venin verdâtre sur quiconque ose toucher ses précieux œuf en chocolat.","œuf","œufs",11,6,20,"g13"
+"Ce Pokémon géant détruit accidentellement les jolies maisons construites par ces petits voisins.","ces","ses",10,7,20,"g14"
+"Ce Pokémon géant détrui accidentellement les jolies maisons construites par ses petits voisins.","détrui","détruit",3,6,20,"g14"
+"Ce Pokémon géant détruit accidentelement les jolies maisons construites par ses petits voisins.","accidentelement","accidentellement",4,7,20,"g14"
+"Ce Pokémon géant détruit accidentellement les jolies maisons construits par ses petits voisins.","construits","construites",8,7,20,"g14"
+"Ce Pokémon geant détruit accidentellement les jolies maisons construites par ses petits voisins.","geant","géant",3,6,20,"g14"
+"Il parle courament sept langues différentes mais oublie toujours son propre prénom.","courament","couramment",2,8,20,"g15"
+"Il parle couramment sept langues diférentes mais oublie toujours son propre prénom.","diférentes","différentes",5,7,20,"g15"
+"Il parle couramment sept langues différentes mais oublie toujours sont propre prénom.","sont","son",9,7,20,"g15"
+"Il parle couramment sept langues différentes mais oublie toujours son propre prénon.","prénon","prénom",11,7,20,"g15"
+"Il parle courammant sept langues différentes mais oublie toujours son propre prénom.","courammant","couramment",2,7,20,"g15"

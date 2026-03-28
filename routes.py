@@ -183,7 +183,9 @@ def register_routes(app):
     @app.route('/admin/logout')
     def admin_logout():
         session.pop('is_admin', None)
-        return redirect(url_for('admin_login'))
+        flash('Tu es déconnecté.', 'success')
+        return redirect(url_for('login'))
+
 
     # -----------------------------------------------------------------------
     # Quiz
@@ -229,11 +231,18 @@ def register_routes(app):
         from models import Phrase
         from services import get_type_info, POKEMON_NOMS
 
+        import time
         idx        = quiz['current_index']
         phrase     = Phrase.query.get(quiz['phrase_ids'][idx])
         type_info  = get_type_info(phrase.difficulte)
         pokemon_id = type_info['pokemon_ids'][phrase.id % len(type_info['pokemon_ids'])]
         pokemon_nom = POKEMON_NOMS.get(pokemon_id, 'Mystérieux')
+
+        # Enregistre l'heure de début uniquement au premier affichage de cette question
+        if quiz.get('current_phrase_id') != phrase.id:
+            quiz['current_phrase_id'] = phrase.id
+            quiz['question_start']    = time.time()
+            session['quiz']           = quiz
 
         response = render_template('quiz_question.html',
                                form=CsrfForm(),
@@ -276,11 +285,15 @@ def register_routes(app):
         if submitted_phrase_id != phrase.id:
             return redirect(url_for('quiz_question'))
 
+        import time
         try:
             position_cliquee = int(request.form.get('position_cliquee', -1))
-            temps_restant    = max(0, int(request.form.get('temps_restant', 0)))
         except ValueError:
-            position_cliquee, temps_restant = -1, 0
+            position_cliquee = -1
+
+        # Temps restant calculé côté serveur — immunise contre la triche via retour arrière
+        elapsed       = time.time() - quiz.get('question_start', time.time())
+        temps_restant = max(0, int(phrase.temps_limite - elapsed))
 
         quiz['total_score']   += calculer_points(
             phrase,
