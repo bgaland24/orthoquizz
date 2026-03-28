@@ -195,6 +195,72 @@ def get_derniers_scores(user_id: int, n: int = 5) -> list:
                  .all())
 
 
+def get_top_scores(user_id: int, n: int = 3) -> list:
+    """Retourne les n meilleurs scores d'un utilisateur, du plus élevé au plus bas."""
+    return (Score.query
+                 .filter_by(user_id=user_id)
+                 .order_by(Score.valeur.desc())
+                 .limit(n)
+                 .all())
+
+
+def get_rang_score(user_id: int, score_valeur: int) -> dict:
+    """
+    Retourne le rang du score parmi les scores du joueur et parmi tous les scores.
+    rang_perso  : position du score parmi tous les scores du joueur (1 = meilleur)
+    total_perso : nombre total de scores du joueur
+    rang_global : position du score parmi tous les scores de tous les joueurs
+    total_global: nombre total de scores en base
+    """
+    from sqlalchemy import func
+    total_perso  = Score.query.filter_by(user_id=user_id).count()
+    rang_perso   = Score.query.filter_by(user_id=user_id).filter(Score.valeur > score_valeur).count() + 1
+    total_global = Score.query.count()
+    rang_global  = Score.query.filter(Score.valeur > score_valeur).count() + 1
+    return {
+        'rang_perso':   rang_perso,
+        'total_perso':  total_perso,
+        'rang_global':  rang_global,
+        'total_global': total_global,
+    }
+
+
+def get_voisins_classement(user_id: int, n: int = 2) -> list:
+    """
+    Retourne un classement autour du top score du joueur connecté :
+    les n joueurs dont le top score est juste au-dessus, le joueur lui-même,
+    et les n joueurs dont le top score est juste en-dessous.
+    Chaque entrée : {'login': str, 'top_score': int, 'is_current': bool}
+    """
+    from models import User
+    from sqlalchemy import func
+
+    # Top score par joueur
+    top_scores = (
+        db.session.query(User.id, User.login, func.max(Score.valeur).label('top_score'))
+        .join(Score, Score.user_id == User.id)
+        .group_by(User.id)
+        .order_by(func.max(Score.valeur).desc())
+        .all()
+    )
+
+    # Trouver la position du joueur courant
+    current_idx = next((i for i, row in enumerate(top_scores) if row.id == user_id), None)
+    if current_idx is None:
+        return []
+
+    start = max(0, current_idx - n)
+    end   = min(len(top_scores), current_idx + n + 1)
+    return [
+        {
+            'login':      row.login,
+            'top_score':  row.top_score,
+            'is_current': row.id == user_id,
+        }
+        for row in top_scores[start:end]
+    ]
+
+
 # ---------------------------------------------------------------------------
 # Admin — rechargement du CSV
 # ---------------------------------------------------------------------------

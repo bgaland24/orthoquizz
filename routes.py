@@ -313,9 +313,16 @@ def register_routes(app):
     @app.route('/quiz/result')
     @login_required
     def quiz_result():
-        from services import get_derniers_scores
+        from services import get_derniers_scores, get_top_scores, get_rang_score, get_voisins_classement
         derniers_scores = get_derniers_scores(current_user.id)
+        score_final     = derniers_scores[0].valeur if derniers_scores else 0
+        top_scores      = get_top_scores(current_user.id)
+        rang            = get_rang_score(current_user.id, score_final)
+        voisins         = get_voisins_classement(current_user.id)
         return render_template('quiz_result.html',
                                form=CsrfForm(),
-                               score_final=derniers_scores[0].valeur if derniers_scores else 0,
-                               last_scores=derniers_scores)
+                               score_final=score_final,
+                               last_scores=derniers_scores,
+                               top_scores=top_scores,
+                               rang=rang,
+                               voisins=voisins)
