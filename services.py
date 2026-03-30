@@ -213,10 +213,18 @@ def get_rang_score(user_id: int, score_valeur: int) -> dict:
     total_global: nombre total de scores en base
     """
     from sqlalchemy import func
-    total_perso  = Score.query.filter_by(user_id=user_id).count()
-    rang_perso   = Score.query.filter_by(user_id=user_id).filter(Score.valeur > score_valeur).count() + 1
-    total_global = Score.query.count()
-    rang_global  = Score.query.filter(Score.valeur > score_valeur).count() + 1
+    perso = db.session.query(
+        func.count(Score.id).label('total'),
+        func.sum((Score.valeur > score_valeur).cast(db.Integer)).label('mieux'),
+    ).filter(Score.user_id == user_id).one()
+    global_ = db.session.query(
+        func.count(Score.id).label('total'),
+        func.sum((Score.valeur > score_valeur).cast(db.Integer)).label('mieux'),
+    ).one()
+    total_perso  = perso.total
+    rang_perso   = (perso.mieux  or 0) + 1
+    total_global = global_.total
+    rang_global  = (global_.mieux or 0) + 1
     return {
         'rang_perso':   rang_perso,
         'total_perso':  total_perso,

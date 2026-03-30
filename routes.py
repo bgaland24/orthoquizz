@@ -154,9 +154,6 @@ def register_routes(app):
     # Mot de passe oublié
     # -----------------------------------------------------------------------
 
-    MOIS_NOMS = ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
-                 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
-
     @app.route('/forgot-password', methods=['GET', 'POST'])
     def forgot_password():
         if current_user.is_authenticated:
