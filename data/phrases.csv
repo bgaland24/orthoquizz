@@ -1,14 +1,14 @@
 texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite,groupe
 "Ce Pokémon crache des flammes qui sont extrement puissantes","extrement","extrêmement",7,3,20,
 "Il possède une carapace qui le protege de toutes les attaques","protege","protège",6,3,20,
-"Ses ailes lui permettent de volé à une vitesse incroyable","volé","voler",5,1,20,
+"Ses ailes lui permettent de volé à une vitesse incroyable","volé","voler",5,2,20,
 "Ce Pokémon ce nourrit exclusivement de lumière solaire","ce","se",2,5,20,
 "Il a été aperçu dans les forêts humide du nord","humide","humides",3,5,20,
 "Ses attaques sont tellement puissante qu'on ne peut pas les esquiver","puissante","puissantes",3,3,20,
 "Ce Pokémon légendaire a vécut plus de mille ans dans les montagnes","vécut","vécu",4,5,20,
-"Il projette des éclairs sur ces ennemis pendant la nuit","ces","ses",5,6,20,
+"Il projette des éclairs sur ces ennemis pendant la nuit","ces","ses",5,5,20,
 "Sa queue lui sert a se défendre contre les prédateurs","a","à",5,4,20,
-"Ce Pokémon s est adapter parfaitement à son environnement glacial","adapter","adapté",4,4,20,
+"Ce Pokémon s'est adapter parfaitement à son environnement glacial","adapter","adapté",3,4,20,
 "Il dort pendant l'hiver et se réveille au printant","printant","printemps",8,3,20,
 "Ses cris résonnent dans les vallé et effraient ses adversaires","vallé","vallées",5,3,20,
 "Ce Pokémon peut soulevé des rochers de plusieurs tonnes","soulevé","soulever",3,4,20,
@@ -16,28 +16,39 @@ texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite,groupe
 "Ses écailles sont aussi dur que du diamant","dur","dures",2,5,20,
 "Ce Pokémon féroce chasse toujours seul dans les plaines ouvert","ouvert","ouvertes",9,6,20,
 "Il génère un champ magnétique qui pertube les appareils électroniques","pertube","perturbe",6,7,20,
-"Sa morsure est si puissant qu elle peut broyer du métal","puissant","puissante",4,7,20,
+"Sa mâchoire est si puissant qu'elle peut broyer du métal","puissant","puissante",4,7,20,
 "Ce Pokémon communique avec ces congénères grâce à des ultrasons","ces","ses",4,5,20,
 "Il pond ses oeufs dans les rivières pour que le courant les emportent","emportent","emporte",12,8,20,
-"Sa peau change de couleurs selon les émotions qu il ressent","couleurs","couleur",4,4,20,
+"Sa peau change de couleurs selon les émotions qu'il ressent","couleurs","couleur",4,4,20,
 "Ce Pokémon est capable de courrire à cent kilomètres par heure","courrire","courir",5,8,20,
 "Il stocke de l'énergie dans sa queue et la relache pendant les combats","relache","relâche",7,6,20,
 "Ses yeux lui permettent de voire dans le noir le plus complet","voire","voir",5,5,20,
 "Ce Pokémon a mit des années à maîtriser ses pouvoirs psychiques","mit","mis",3,8,20,
-"Il peut se rendraient invisible en modifiant la lumière autour de lui","rendraient","rendre",3,3,20,
-"Sa salive est un poisson puissant qui paralyse ses ennemis en quelques secondes","poisson","poison",4,7,20,
-"Ce Pokémon vit en groupe et défendent ensemble leur territoire","défendent","défend",6,8,20,
-"Il absorbe la chaleur du soleil et la restitut sous forme d énergie","restitut","restitue",8,8,20,
+"Il peux se rendre invisible en modifiant la lumière autour de lui","peux","peut",1,3,20,
+"Sa salive est un poisson puissant qui paralyse ses ennemis en quelques secondes","poisson","poison",4,2,20,"g001"
+"Sa salive est un poison puissent qui paralyse ses ennemis en quelques secondes","puissent","puissant",5,2,20,"g001"
+"Sa salive est un poison puissant qui paralise ses ennemis en quelques secondes","paralise","paralyse",7,3,20,"g001"
+"Sa salive est un poison puissant qui paralyse ses enemis en quelques secondes","enemis","ennemis",9,4,20,"g001"
+"Sa salive est un poison puissant qui paralysent ses ennemis en quelques secondes","paralyse","paralysent",7,3,20,"g001"
+"Ce Pokémon vit en groupe qui défent ensemble son territoire","défent","défend",6,6,20,"g002"
+"Ce Pokémon vit en groupe qui défend ensamble son territoire","ensamble","ensemble",7,3,20,"g002"
+"Ce Pokémon vit en groupe qui défend ensemble son teritoire","teritoire","territoire",9,4,20,"g002"
+"Ce Pokémon vie en groupe qui défend ensemble son territoire","vie","vit",2,5,20,"g002"
+"Il absorbe la chaleur du soleil et la restitut sous forme d'énergie","restitut","restitue",8,8,20,
 "Ses tentacules peuvent s'étirer jusqu à dix fois leurs longeur initiale","longeur","longueur",9,6,20,
 "Ce Pokémon est redouté de tous ses adversaires car il ne ce fatigue jamais","ce","se",11,5,20,
 "Il a été observé en train de soulever des rochers qu'il lançait sur ces proies","ces","ses",13,6,20,
 "Sa fourrure épaisse lui permet de résisté aux températures les plus extrêmes","résisté","résister",6,7,20,
 "Ce Pokémon peux générer des vagues de chaleur qui font fondre la roche","peux","peut",2,6,20,
 "Il marque son territoire en griffant les arbres avec ses serre acérées","serre","serres",10,5,20,
-"Sa technique favorite consiste à attiré ses adversaires dans un piège","attiré","attirer",5,7,20,
+"Sa technique favorite consiste à attiré ses adversaires dans un piège","attiré","attirer",5,5,20,
 "Ce Pokémon est le seul de son espèce a avoir survécu à l'ère glaciaire","a","à",8,6,20,
-"Il produit une lumière si intense qu'elle peut être apercue à des kilomètres à la ronde","apercue","aperçue",10,6,20,
-"Ses griffes sont si afutée qu elles peuvent trancher n importe quelle surface","afutée","afutées",4,7,20,
+"Il produit une lumière si intense qu'elle peut être apercue à des kilomètres à la ronde","apercue","aperçue",9,6,20,
+"Ses griffes sont si affûtée qu'elles peuvent trancher n'importe quelle surface","afutée","affûtées",4,2,20,"g003"
+"Ses griffes sont si affûtées qu'elles peuve trancher n'importe quelle surface","peuve","peuvent",6,3,20,"g003"
+"Ses griffes sont si affûtées qu'elles peuvent tranché n'importe quelle surface","tranché","trancher",7,4,20,"g003"
+"Ses griffes sont si affûtées qu'elles peuvent trancher n'importe quel surface","quel","quelle",9,5,20,"g003"
+"Ses griffes sont si affutées qu'elles peuvent trancher n'importe quelle surface","affutées","affûtées",4,10,20,"g003"
 "Ce Pokémon a choisit ce territoire il y a plusieurs siècles et ne l'a jamais quitté","choisit","choisi",3,9,20,
 "Il crache du feu très chaud sur les frites de ses ennemis affamé.","affamé","affamés",12,4,20,"g01"
 "Il crache du feu très chaud sur les frites de ces ennemis affamés.","ces","ses",10,5,20,"g01"
@@ -114,3 +125,18 @@ texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite,groupe
 "Il parle couramment sept langues différentes mais oublie toujours sont propre prénom.","sont","son",9,7,20,"g15"
 "Il parle couramment sept langues différentes mais oublie toujours son propre prénon.","prénon","prénom",11,7,20,"g15"
 "Il parle courammant sept langues différentes mais oublie toujours son propre prénom.","courammant","couramment",2,7,20,"g15"
+"Elle métamorfose instantanément ses adversaires redoutables en escargots lents et profondément consternés.","métamorfose","métamorphose",1,8,20,"g16"
+"Elle métamorphose instantanement ses adversaires redoutables en escargots lents et profondément consternés.","instantanement","instantanément",2,9,20,"g16"
+"Elle métamorphose instantanément ces adversaires redoutables en escargots lents et profondément consternés.","ces","ses",3,8,20,"g16"
+"Elle métamorphose instantanément ses adversères redoutables en escargots lents et profondément consternés.","adversères","adversaires",4,8,20,"g16"
+"Elle métamorphose instantanément ses adversaires redoutables en escargots lents et profondéments consternés.","profondéments","profondément",10,10,20,"g16"
+"Ce Pokémon a plonger bravement dans l'océan glacé pour récupérer ses précieuses lunettes perdues.","plonger","plongé",3,8,20,"g17"
+"Ce Pokémon a plongé bravement dans l'océan glassé pour récupérer ses précieuses lunettes perdues.","glassé","glacé",7,7,20,"g17"
+"Ce Pokémon a plongé bravement dans l'océan glacé pour récupéré ses précieuses lunettes perdues.","récupéré","récupérer",9,8,20,"g17"
+"Ce Pokémon a plongé bravement dans l'océan glacé pour récupérer ses précieuses lunetes perdues.","lunetes","lunettes",12,8,20,"g17"
+"Ce Pokémon a plongé bravement dans l'océan glacé pour récupérer ses précieuses lunettes perdus.","perdus","perdues",13,9,20,"g17"
+"Il génère des champs magnétiques puissants qui attirent involontairement toutes les cuillères envirronnantes.","envirronnantes","environnantes",12,10,20,"g18"
+"Il génére des champs magnétiques puissants qui attirent involontairement toutes les cuillères environnantes.","génére","génère",1,10,20,"g18"
+"Il génère des champs magnétiques puissants qui attire involontairement toutes les cuillères environnantes.","attire","attirent",7,9,20,"g18"
+"Il génère des champs magnétiques puissants qui attirent involontairemant toutes les cuillères environnantes.","involontairemant","involontairement",8,9,20,"g18"
+"Il génère des champs magnétiques puissants qui attirent involontairement toutes les cuillères environantes.","environantes","environnantes",12,10,20,"g18"

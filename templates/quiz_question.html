@@ -527,16 +527,20 @@
     function showFeedback(type) {
         const el = document.getElementById('feedback');
         el.classList.remove('hidden');
-        if (type === 'bravo') {
-            el.className = 'feedback feedback-success';
-            el.innerHTML = `✅ Bravo ! La bonne orthographe est : <strong>${motCorrige}</strong>`;
-        } else if (type === 'erreur') {
-            el.className = 'feedback feedback-error';
-            el.innerHTML = `❌ Tu n'es pas passé loin ! La bonne orthographe est : <strong>${motCorrige}</strong>`;
-        } else {
-            el.className = 'feedback feedback-timeout';
-            el.innerHTML = `⏰ Temps écoulé ! La bonne orthographe était : <strong>${motCorrige}</strong>`;
-        }
+        const messages = {
+            bravo:   { cls: 'feedback feedback-success', prefix: '✅ Bravo ! La bonne orthographe est\u00a0: ' },
+            erreur:  { cls: 'feedback feedback-error',   prefix: '❌ Tu n\'es pas passé loin ! La bonne orthographe est\u00a0: ' },
+            timeout: { cls: 'feedback feedback-timeout', prefix: '⏰ Temps écoulé ! La bonne orthographe était\u00a0: ' },
+        };
+        const { cls, prefix } = messages[type] || messages.timeout;
+        el.className = cls;
+        el.textContent = '';
+        const span = document.createElement('span');
+        span.textContent = prefix;
+        const strong = document.createElement('strong');
+        strong.textContent = motCorrige;
+        el.appendChild(span);
+        el.appendChild(strong);
     }
 
     startTimer();

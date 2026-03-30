@@ -87,7 +87,7 @@ def calculer_points(phrase: Phrase, reponse_correcte: bool, temps_restant: int) 
     - Mauvaise réponse ou timeout → 0 point
     - Bonne réponse → difficulte * (1 + temps_restant / temps_limite)
     """
-    if not reponse_correcte:
+    if not reponse_correcte or temps_restant < 0:
         return 0
     bonus_temps = min(0.90, temps_restant / phrase.temps_limite)
     return round(phrase.difficulte * (1 + bonus_temps))*10

@@ -2,12 +2,64 @@
 
 {% block body_attrs %} class="dark-page"{% endblock %}
 
+{% block extra_styles %}
+<style>
+    .pokemon-slider {
+        position: relative;
+        width: 96px;
+        height: 96px;
+        margin: 0 auto 4px auto;
+        filter: drop-shadow(0 0 14px rgba(255,215,0,0.7));
+    }
+    .pokemon-slider img {
+        position: absolute;
+        top: 0; left: 0;
+        width: 96px;
+        height: 96px;
+        object-fit: contain;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+    }
+    .pokemon-slider img.active { opacity: 1; }
+
+    .register-btn {
+        display: block;
+        width: 100%;
+        background: rgba(255,255,255,0.08) !important;
+        color: white !important;
+        border: 2px solid rgba(255,215,0,0.4) !important;
+        padding: 14px !important;
+        border-radius: 10px !important;
+        font-size: 15px !important;
+        font-weight: 700 !important;
+        cursor: pointer;
+        letter-spacing: 0.5px;
+        margin-top: 4px !important;
+        text-align: center;
+        text-decoration: none;
+        box-sizing: border-box;
+    }
+    .register-btn:hover {
+        background: rgba(255,215,0,0.12) !important;
+        border-color: rgba(255,215,0,0.7) !important;
+        color: #FFD700 !important;
+    }
+</style>
+{% endblock %}
+
 {% block content %}
 
 <div class="home-title">
-    <span class="logo">📖</span>
+    <div class="pokemon-slider" id="pokemonSlider">
+        {% set pokemon_ids = [133, 143, 132, 174, 234, 1, 43, 69, 152, 187, 7, 54, 79, 158, 183, 4, 37, 58, 155, 218, 63, 151, 175, 196] %}
+        {% for pid in pokemon_ids %}
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{ pid }}.png"
+             alt="Pokémon"
+             class="{% if loop.first %}active{% endif %}">
+        {% endfor %}
+    </div>
     <h1>ORTHOQUIZZ</h1>
-    <p class="tagline">Deviens le champion de l'orthographe !</p>
+    <p class="tagline">Joue avec tes Pokémon préférés pour devenir un champion en orthographe !</p>
 </div>
 
 <div class="perks">
@@ -28,10 +80,22 @@
     </form>
 </div>
 
-<p class="subtle-link">
-    Pas encore de compte ? <a href="{{ url_for('register') }}">Inscris-toi ici</a>
+<a href="{{ url_for('register') }}" class="register-btn">✨ Pas encore de compte ? Inscris-toi ici !</a>
+
+<p class="subtle-link" style="margin-top:12px;">
+    <a href="{{ url_for('forgot_password') }}">Mot de passe oublié ?</a>
 </p>
 
 <a href="{{ url_for('admin_login') }}" class="admin-link">Accès administrateur</a>
+
+<script>
+    const imgs = document.querySelectorAll('#pokemonSlider img');
+    let current = 0;
+    setInterval(() => {
+        imgs[current].classList.remove('active');
+        current = (current + 1) % imgs.length;
+        imgs[current].classList.add('active');
+    }, 3000);
+</script>
 
 {% endblock %}

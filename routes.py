@@ -3,6 +3,9 @@ from flask import render_template, request, redirect, url_for, flash, session
 from flask_login import login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_wtf import FlaskForm
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+from moderation import login_est_autorise
 
 
 class CsrfForm(FlaskForm):
@@ -10,6 +13,12 @@ class CsrfForm(FlaskForm):
 
 
 def register_routes(app):
+    limiter = Limiter(
+        get_remote_address,
+        app=app,
+        default_limits=[],
+        storage_uri='memory://',
+    )
 
     # -----------------------------------------------------------------------
     # Helpers admin
@@ -54,18 +63,20 @@ def register_routes(app):
                 return render_template('register.html', form=form)
 
             login_val        = request.form.get('login',            '').strip()
-            # age              = request.form.get('age',              '').strip()
-            # email_parent     = request.form.get('email_parent',     '').strip()
+            age_val          = request.form.get('age',              '').strip()
+            mois_val         = request.form.get('mois_naissance',   '').strip()
             password         = request.form.get('password',         '')
             password_confirm = request.form.get('password_confirm', '')
 
             errors = []
             if len(login_val) < 3:
                 errors.append('Le pseudo doit faire au moins 3 caractères.')
-            # if not age.isdigit() or not (5 <= int(age) <= 18):
-            #     errors.append("L'âge doit être compris entre 5 et 18 ans.")
-            # if '@' not in email_parent:
-            #     errors.append("L'email des parents n'est pas valide.")
+            if not login_est_autorise(login_val):
+                errors.append("Ce pseudo n'est pas autorisé. Choisis un autre pseudo.")
+            if not age_val.isdigit() or not (5 <= int(age_val) <= 99):
+                errors.append("L'âge doit être compris entre 5 et 99 ans.")
+            if not mois_val.isdigit() or not (1 <= int(mois_val) <= 12):
+                errors.append("Le mois de naissance est invalide.")
             if len(password) < 6:
                 errors.append('Le mot de passe doit faire au moins 6 caractères.')
             if password != password_confirm:
@@ -85,8 +96,8 @@ def register_routes(app):
 
             db.session.add(User(
                 login=login_val,
-                # age=int(age),
-                # email_parent=email_parent,
+                age=int(age_val),
+                mois_naissance=int(mois_val),
                 password_hash=generate_password_hash(password)
             ))
             db.session.commit()
@@ -100,6 +111,7 @@ def register_routes(app):
     # -----------------------------------------------------------------------
 
     @app.route('/login', methods=['GET', 'POST'])
+    @limiter.limit('5 per minute')
     def login():
         if current_user.is_authenticated:
             return redirect(url_for('quiz_home'))
@@ -139,10 +151,93 @@ def register_routes(app):
         return redirect(url_for('login'))
 
     # -----------------------------------------------------------------------
+    # Mot de passe oublié
+    # -----------------------------------------------------------------------
+
+    MOIS_NOMS = ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+                 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre']
+
+    @app.route('/forgot-password', methods=['GET', 'POST'])
+    def forgot_password():
+        if current_user.is_authenticated:
+            return redirect(url_for('quiz_home'))
+
+        attempts = session.get('forgot_attempts', 0)
+        form = CsrfForm()
+
+        if request.method == 'POST':
+            if not form.validate_on_submit():
+                flash('Erreur de sécurité, réessaie.', 'error')
+                return render_template('forgot_password.html', form=form, attempts=attempts)
+
+            if attempts >= 3:
+                return render_template('forgot_password.html', form=form, attempts=attempts)
+
+            from models import User
+            login_val = request.form.get('login', '').strip()
+            age_val   = request.form.get('age',   '').strip()
+            mois_val  = request.form.get('mois_naissance', '').strip()
+
+            user = User.query.filter_by(login=login_val).first()
+            if (user and age_val.isdigit() and mois_val.isdigit()
+                    and user.age == int(age_val)
+                    and user.mois_naissance == int(mois_val)):
+                session['reset_user_id'] = user.id
+                session.pop('forgot_attempts', None)
+                return redirect(url_for('reset_password'))
+
+            session['forgot_attempts'] = attempts + 1
+            flash('Informations incorrectes. Vérifie ton pseudo, ton âge et ton mois de naissance.', 'error')
+
+        return render_template('forgot_password.html', form=form, attempts=session.get('forgot_attempts', 0))
+
+    @app.route('/reset-password', methods=['GET', 'POST'])
+    def reset_password():
+        if current_user.is_authenticated:
+            return redirect(url_for('quiz_home'))
+
+        user_id = session.get('reset_user_id')
+        if not user_id:
+            return redirect(url_for('login'))
+
+        form = CsrfForm()
+
+        if request.method == 'POST':
+            if not form.validate_on_submit():
+                flash('Erreur de sécurité, réessaie.', 'error')
+                return render_template('reset_password.html', form=form)
+
+            from models import User
+            from app import db
+            password         = request.form.get('password', '')
+            password_confirm = request.form.get('password_confirm', '')
+
+            if len(password) < 6:
+                flash('Le mot de passe doit faire au moins 6 caractères.', 'error')
+                return render_template('reset_password.html', form=form)
+            if password != password_confirm:
+                flash('Les mots de passe ne correspondent pas.', 'error')
+                return render_template('reset_password.html', form=form)
+
+            user = User.query.get(user_id)
+            if not user:
+                session.pop('reset_user_id', None)
+                return redirect(url_for('login'))
+
+            user.password_hash = generate_password_hash(password)
+            db.session.commit()
+            session.pop('reset_user_id', None)
+            flash('Mot de passe modifié ! Tu peux te connecter.', 'success')
+            return redirect(url_for('login'))
+
+        return render_template('reset_password.html', form=form)
+
+    # -----------------------------------------------------------------------
     # Admin
     # -----------------------------------------------------------------------
 
     @app.route('/admin/login', methods=['GET', 'POST'])
+    @limiter.limit('5 per minute')
     def admin_login():
         if is_admin():
             return redirect(url_for('admin_dashboard'))
@@ -166,11 +261,30 @@ def register_routes(app):
     @app.route('/admin')
     @admin_required
     def admin_dashboard():
-        from models import User, Phrase
+        from models import User, Phrase, Score
+        from sqlalchemy import func
+        from app import db
+        users = (db.session.query(User, func.max(Score.valeur).label('best'))
+                 .outerjoin(Score, Score.user_id == User.id)
+                 .group_by(User.id)
+                 .order_by(User.id.desc())
+                 .all())
         return render_template('admin_dashboard.html',
                                form=CsrfForm(),
                                nb_phrases=Phrase.query.count(),
-                               nb_users=User.query.count())
+                               nb_users=User.query.count(),
+                               users=users)
+
+    @app.route('/admin/user/<int:user_id>/delete', methods=['POST'])
+    @admin_required
+    def admin_delete_user(user_id):
+        from models import User, Score
+        from app import db
+        Score.query.filter_by(user_id=user_id).delete()
+        User.query.filter_by(id=user_id).delete()
+        db.session.commit()
+        flash('Utilisateur supprimé.', 'success')
+        return redirect(url_for('admin_dashboard'))
 
     @app.route('/admin/reload', methods=['POST'])
     @admin_required

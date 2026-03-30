@@ -1,25 +1,62 @@
 {% extends "base.html" %}
 {% block content %}
 
+{% set mois_noms = ['', 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
+                    'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'] %}
+
 <h2>Dashboard Admin</h2>
 
-<p>Phrases actuellement en base : <strong>{{ nb_phrases }}</strong></p>
-<p>Utilisateurs inscrits : <strong>{{ nb_users }}</strong></p>
+<p>Phrases en base : <strong>{{ nb_phrases }}</strong> &nbsp;|&nbsp; Utilisateurs inscrits : <strong>{{ nb_users }}</strong></p>
 
-<hr style="margin: 24px 0;">
+<hr style="margin: 16px 0;">
 
 <h3>Recharger les phrases</h3>
 <p style="color:#666; font-size:14px;">
-    Cette action supprime toutes les phrases existantes et les remplace
-    par le contenu du fichier <code>data/phrases.csv</code>.
+    Supprime toutes les phrases et les remplace par <code>data/phrases.csv</code>.
 </p>
-
 <form method="POST" action="{{ url_for('admin_reload') }}">
     {{ form.hidden_tag() }}
-    <button type="submit" style="background:#e74c3c;">
-        Recharger les phrases depuis le CSV
-    </button>
+    <button type="submit" style="background:#e74c3c;">Recharger depuis le CSV</button>
 </form>
+
+<hr style="margin: 24px 0;">
+
+<h3>Utilisateurs</h3>
+{% if users %}
+<table style="width:100%; border-collapse:collapse; font-size:14px;">
+    <thead>
+        <tr style="border-bottom:2px solid #ddd; text-align:left;">
+            <th style="padding:8px 6px;">Pseudo</th>
+            <th style="padding:8px 6px;">Meilleur score</th>
+            <th style="padding:8px 6px;">Âge</th>
+            <th style="padding:8px 6px;">Mois naissance</th>
+            <th style="padding:8px 6px;"></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for user, best in users %}
+        <tr style="border-bottom:1px solid #eee;">
+            <td style="padding:8px 6px;">{{ user.login }}</td>
+            <td style="padding:8px 6px;">{{ best ~ ' pts' if best else '—' }}</td>
+            <td style="padding:8px 6px;">{{ user.age if user.age else '—' }}</td>
+            <td style="padding:8px 6px;">{{ mois_noms[user.mois_naissance] if user.mois_naissance else '—' }}</td>
+            <td style="padding:8px 6px;">
+                <form method="POST" action="{{ url_for('admin_delete_user', user_id=user.id) }}"
+                      onsubmit="return confirm('Supprimer {{ user.login }} et tous ses scores ?')">
+                    {{ form.hidden_tag() }}
+                    <button type="submit"
+                            style="background:#e74c3c; color:white; border:none; padding:4px 10px; border-radius:4px; cursor:pointer; font-size:12px;">
+                        Supprimer
+                    </button>
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p style="color:#666;">Aucun utilisateur inscrit.</p>
+{% endif %}
 
 <hr style="margin: 24px 0;">
 

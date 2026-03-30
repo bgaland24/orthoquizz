@@ -6,12 +6,12 @@ from app import db, login_manager
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
 
-    id            = db.Column(db.Integer,     primary_key=True)
-    login         = db.Column(db.String(50),  unique=True, nullable=False)
-    #email_parent  = db.Column(db.String(120), nullable=True)
-    #age           = db.Column(db.Integer,     nullable=True)
-    password_hash = db.Column(db.String(256), nullable=False)
-    scores        = db.relationship('Score', backref='user', lazy=True)
+    id             = db.Column(db.Integer,     primary_key=True)
+    login          = db.Column(db.String(50),  unique=True, nullable=False)
+    age            = db.Column(db.Integer,     nullable=True)
+    mois_naissance = db.Column(db.Integer,     nullable=True)  # 1-12
+    password_hash  = db.Column(db.String(256), nullable=False)
+    scores         = db.relationship('Score', backref='user', lazy=True)
 
     def __repr__(self):
         return f'<User {self.login}>'
