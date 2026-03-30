@@ -52,6 +52,9 @@
         @keyframes logo-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
         .home-title h1 { font-size: 26px; font-weight: 900; color: #FFD700; text-shadow: 0 0 20px rgba(255,215,0,0.5); margin: 0 0 2px 0; letter-spacing: 2px; }
         .home-title .tagline { font-size: 13px; color: rgba(255,255,255,0.6); font-style: italic; }
+        .pokemon-slider { position: relative; width: 96px; height: 96px; margin: 0 auto 4px auto; filter: drop-shadow(0 0 14px rgba(255,215,0,0.7)); }
+        .pokemon-slider img { position: absolute; top: 0; left: 0; width: 96px; height: 96px; object-fit: contain; opacity: 0; transition: opacity 0.6s ease; }
+        .pokemon-slider img.active { opacity: 1; }
 
         .perks { display: flex; justify-content: center; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; }
         .perk { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 5px 12px; font-size: 12px; color: rgba(255,255,255,0.7); }

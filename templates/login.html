@@ -1,27 +1,10 @@
 {% extends "base.html" %}
+{% from "_macros.html" import pokemon_slider %}
 
 {% block body_attrs %} class="dark-page"{% endblock %}
 
 {% block extra_styles %}
 <style>
-    .pokemon-slider {
-        position: relative;
-        width: 96px;
-        height: 96px;
-        margin: 0 auto 4px auto;
-        filter: drop-shadow(0 0 14px rgba(255,215,0,0.7));
-    }
-    .pokemon-slider img {
-        position: absolute;
-        top: 0; left: 0;
-        width: 96px;
-        height: 96px;
-        object-fit: contain;
-        opacity: 0;
-        transition: opacity 0.6s ease;
-    }
-    .pokemon-slider img.active { opacity: 1; }
-
     .register-btn {
         display: block;
         width: 100%;
@@ -50,14 +33,7 @@
 {% block content %}
 
 <div class="home-title">
-    <div class="pokemon-slider" id="pokemonSlider">
-        {% set pokemon_ids = [133, 143, 132, 174, 234, 1, 43, 69, 152, 187, 7, 54, 79, 158, 183, 4, 37, 58, 155, 218, 63, 151, 175, 196] %}
-        {% for pid in pokemon_ids %}
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{ pid }}.png"
-             alt="Pokémon"
-             class="{% if loop.first %}active{% endif %}">
-        {% endfor %}
-    </div>
+    {{ pokemon_slider() }}
     <h1>ORTHOQUIZZ</h1>
     <p class="tagline">Joue avec tes Pokémon préférés pour devenir un champion en orthographe !</p>
 </div>
@@ -87,15 +63,5 @@
 </p>
 
 <a href="{{ url_for('admin_login') }}" class="admin-link">Accès administrateur</a>
-
-<script>
-    const imgs = document.querySelectorAll('#pokemonSlider img');
-    let current = 0;
-    setInterval(() => {
-        imgs[current].classList.remove('active');
-        current = (current + 1) % imgs.length;
-        imgs[current].classList.add('active');
-    }, 3000);
-</script>
 
 {% endblock %}

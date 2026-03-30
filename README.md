@@ -27,6 +27,8 @@ cp .env.example .env   # puis édite .env avec tes valeurs
 python init_db.py      # crée la base et charge les phrases depuis data/phrases.csv
 python run.py
 ```
+flask db stamp base   # BDD vierge de tout historique Alembic
+flask db upgrade      # applique toutes les migrations (juste la nôtre ici)
 
 Ouvrir http://127.0.0.1:5000
 

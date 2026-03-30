@@ -1,11 +1,12 @@
 {% extends "base.html" %}
+{% from "_macros.html" import pokemon_slider %}
 
 {% block body_attrs %} class="dark-page"{% endblock %}
 
 {% block content %}
 
 <div class="home-title">
-    <span class="logo">📖</span>
+    {{ pokemon_slider() }}
     <h1>ORTHOQUIZZ</h1>
     <p class="tagline">Crée ton compte et commence à jouer !</p>
 </div>

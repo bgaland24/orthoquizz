@@ -1,0 +1,21 @@
+{% macro pokemon_slider() %}
+{%- set pokemon_ids = [133, 143, 132, 174, 234, 1, 43, 69, 152, 187, 7, 54, 79, 158, 183, 4, 37, 58, 155, 218, 63, 151, 175, 196] %}
+<div class="pokemon-slider" id="pokemonSlider">
+    {% for pid in pokemon_ids %}
+    <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/{{ pid }}.png"
+         alt="Pokémon"
+         class="{% if loop.first %}active{% endif %}">
+    {% endfor %}
+</div>
+<script>
+(function() {
+    var imgs = document.querySelectorAll('#pokemonSlider img');
+    var current = 0;
+    setInterval(function() {
+        imgs[current].classList.remove('active');
+        current = (current + 1) % imgs.length;
+        imgs[current].classList.add('active');
+    }, 3000);
+})();
+</script>
+{% endmacro %}

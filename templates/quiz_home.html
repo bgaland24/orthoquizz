@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "_macros.html" import pokemon_slider %}
 
 {% block body_attrs %} class="dark-page"{% endblock %}
 
@@ -115,7 +116,7 @@
 
 <!-- Titre -->
 <div class="home-title">
-    <span class="logo">📖</span>
+    {{ pokemon_slider() }}
     <h1>ORTHOQUIZZ</h1>
     <p class="tagline">Deviens le champion de l'orthographe !</p>
 </div>
