@@ -21,6 +21,8 @@
     <span class="perk">⭐ Bats ton score</span>
 </div>
 
+<a href="{{ url_for('register') }}" class="register-btn">✨ Pas encore de compte ? Inscris-toi ici !</a>
+
 <div class="form-box">
     <h2>Connexion</h2>
     <form method="POST">
@@ -32,8 +34,6 @@
         <button type="submit" class="action-btn">🎮 Jouer !</button>
     </form>
 </div>
-
-<a href="{{ url_for('register') }}" class="register-btn">✨ Pas encore de compte ? Inscris-toi ici !</a>
 
 <p class="subtle-link">
     <a href="{{ url_for('forgot_password') }}">Mot de passe oublié ?</a>
