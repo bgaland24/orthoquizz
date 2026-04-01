@@ -1,0 +1,26 @@
+/* ================================================================
+   LOGIN.CSS — Bouton d'inscription sur la page de connexion
+   ================================================================ */
+
+.register-btn {
+    display: block;
+    width: 100%;
+    background: rgba(255,255,255,0.08) !important;
+    color: white !important;
+    border: 2px solid rgba(255,215,0,0.4) !important;
+    padding: 14px !important;
+    border-radius: 10px !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+    margin-top: 4px !important;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+.register-btn:hover {
+    background: rgba(255,215,0,0.12) !important;
+    border-color: rgba(255,215,0,0.7) !important;
+    color: #FFD700 !important;
+}

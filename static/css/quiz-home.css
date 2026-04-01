@@ -1,0 +1,74 @@
+/* ================================================================
+   QUIZ-HOME.CSS — Page d'accueil du quiz
+   ================================================================ */
+
+.welcome-banner {
+    background: linear-gradient(135deg, rgba(255,215,0,0.15), rgba(255,215,0,0.05));
+    border: 1px solid rgba(255,215,0,0.3);
+    border-radius: 12px;
+    padding: 12px 16px;
+    text-align: center;
+    margin: 14px 0;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+.welcome-banner span { color: #FFD700; }
+
+.rules-title {
+    color: rgba(255,255,255,0.5);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 8px;
+}
+.rules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+.rule-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 10px 12px;
+    text-align: center;
+}
+.rule-card .rule-icon { font-size: 22px; display: block; margin-bottom: 4px; }
+.rule-card .rule-text { font-size: 11px; color: rgba(255,255,255,0.75); line-height: 1.4; }
+.rule-card .rule-text strong { color: white; display: block; margin-bottom: 2px; font-size: 12px; }
+
+.badge-strip { display: flex; justify-content: center; gap: 8px; margin-bottom: 16px; }
+.badge {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,215,0,0.25);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+}
+.badge strong { color: #FFD700; }
+
+.action-btn { animation: pulse-start 1.8s ease-in-out infinite; font-size: 19px !important; }
+
+.no-questions {
+    background: rgba(231,76,60,0.15);
+    border: 1px solid rgba(231,76,60,0.4);
+    border-radius: 10px;
+    padding: 14px;
+    color: #ff8a80;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.leaderboard-title {
+    color: rgba(255,255,255,0.5);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    margin: 20px 0 8px;
+}

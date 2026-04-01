@@ -4,30 +4,7 @@
 {% block body_attrs %} class="dark-page"{% endblock %}
 
 {% block extra_styles %}
-<style>
-    .register-btn {
-        display: block;
-        width: 100%;
-        background: rgba(255,255,255,0.08) !important;
-        color: white !important;
-        border: 2px solid rgba(255,215,0,0.4) !important;
-        padding: 14px !important;
-        border-radius: 10px !important;
-        font-size: 15px !important;
-        font-weight: 700 !important;
-        cursor: pointer;
-        letter-spacing: 0.5px;
-        margin-top: 4px !important;
-        text-align: center;
-        text-decoration: none;
-        box-sizing: border-box;
-    }
-    .register-btn:hover {
-        background: rgba(255,215,0,0.12) !important;
-        border-color: rgba(255,215,0,0.7) !important;
-        color: #FFD700 !important;
-    }
-</style>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -58,7 +35,7 @@
 
 <a href="{{ url_for('register') }}" class="register-btn">✨ Pas encore de compte ? Inscris-toi ici !</a>
 
-<p class="subtle-link" style="margin-top:12px;">
+<p class="subtle-link">
     <a href="{{ url_for('forgot_password') }}">Mot de passe oublié ?</a>
 </p>
 

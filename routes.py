@@ -86,29 +86,32 @@ def register_routes(app):
             if password != password_confirm:
                 errors.append('Les mots de passe ne correspondent pas.')
 
+            prefill = {'login': login_val, 'age': age_val, 'mois_naissance': mois_val}
+
             if errors:
                 for e in errors:
                     flash(e, 'error')
-                return render_template('register.html', form=form)
+                return render_template('register.html', form=form, prefill=prefill)
 
             from models import User
             from app import db
 
             if User.query.filter_by(login=login_val).first():
                 flash('Ce pseudo est déjà pris, choisis-en un autre.', 'error')
-                return render_template('register.html', form=form)
+                return render_template('register.html', form=form, prefill=prefill)
 
-            db.session.add(User(
+            new_user = User(
                 login=login_val,
                 age=int(age_val),
                 mois_naissance=int(mois_val),
                 password_hash=generate_password_hash(password)
-            ))
+            )
+            db.session.add(new_user)
             db.session.commit()
-            flash('Compte créé ! Tu peux te connecter.', 'success')
-            return redirect(url_for('login'))
+            login_user(new_user)
+            return redirect(url_for('quiz_home'))
 
-        return render_template('register.html', form=form)
+        return render_template('register.html', form=form, prefill={})
 
     # -----------------------------------------------------------------------
     # Connexion

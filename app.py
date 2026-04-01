@@ -54,7 +54,7 @@ def create_app() -> Flask:
         response.headers['Referrer-Policy']        = 'strict-origin-when-cross-origin'
         response.headers['Content-Security-Policy'] = (
             "default-src 'self'; "
-            "script-src 'self' 'unsafe-inline'; "
+            "script-src 'self'; "
             "style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; "
             "font-src 'self' https://cdn.jsdelivr.net; "
             "img-src 'self' data: https://raw.githubusercontent.com https://pokeapi.co; "

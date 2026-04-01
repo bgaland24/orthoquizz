@@ -1,48 +1,72 @@
-# OrthoQuizz — Contexte projet pour Claude
+# OrthoQuizz — Guide Claude
 
-## Description
-Application web Flask pour aider les enfants de primaire à s'améliorer en orthographe.
-Format : quiz style carte Pokémon — une phrase s'affiche, l'enfant clique sur le mot mal orthographié contre la montre.
+## Bonnes pratiques & architecture
 
-## Stack
-- **Backend** : Flask + Flask-Login + Flask-WTF (CSRF) + SQLAlchemy + SQLite
-- **Frontend** : Jinja2 + Bootstrap 5 (CDN) + CSS inline (dark theme)
-- **Déploiement cible** : PythonAnywhere (`from app import app as application`)
+### Conventions de code
+- Lire un fichier avant de le modifier — toujours
+- Proposer les options avant tout changement architectural
+- Ne jamais supprimer du code sans demande explicite
+- Réponses courtes, expliquer uniquement ce qui impacte d'autres fichiers
+- Pas de `console.log` en prod
 
-## Structure des fichiers clés
-- `app.py` — factory `create_app()`, extensions globales (`db`, `login_manager`, `csrf`)
-- `models.py` — `User`, `Phrase`, `Score` + `@login_manager.user_loader`
-- `routes.py` — toutes les routes dans `register_routes(app)` avec `CsrfForm` pour CSRF
+### CSS / JS
+- Tout CSS dans `static/css/`, tout JS dans `static/js/` — aucun `<style>` ou `<script>` inline dans les templates
+- Passer les données Jinja2 → JS via `data-attributes`, pas via interpolation dans `<script>`
+- Exception tolérée : `style="--css-var: {{ val }}"` pour les CSS custom properties dynamiques (carte Pokémon)
+- Fichiers : `base.css` (partagé), `quiz-question.css/js`, `quiz-home.css`, `quiz-result.css`, `login.css`, `admin.css`, `pokemon-slider.js`
+
+### Sécurité
+- CSP : `script-src 'self'` sans `unsafe-inline` — configurée dans `app.py:set_security_headers`
+- CSRF : `CsrfForm` + `form.validate_on_submit()` sur tous les POST
+- Rate limiting POST uniquement (`methods=['POST']`) — ne jamais limiter les GET
+- Validation côté serveur obligatoire même si HTML a `pattern`/`minlength`
+- Login : regex `^[a-zA-ZÀ-ÿ0-9_-]{3,15}$`, password : 6-20 chars
+- Mot de passe haché via `werkzeug` — jamais comparé en clair
+- Valeurs entières castées `int()` avant toute requête DB
+- Pas d'interpolation de données utilisateur dans les attributs JS (`onsubmit`, `onclick`)
+
+### Templates Jinja2
+- Macros réutilisables dans `_macros.html` : `pokemon_slider()`, `mois_select(selected='')`
+- `base.html` charge `base.css` — les templates enfants ajoutent leur CSS via `{% block extra_styles %}`
+- Auto-échappement Jinja2 actif — ne jamais utiliser `{{ var | safe }}` sur des données utilisateur
+
+### Base de données
+- ORM SQLAlchemy uniquement — aucun SQL construit par concaténation
+- Migrations via Flask-Migrate : `flask db migrate` / `flask db upgrade`
+- Première mise en prod sans historique Alembic : `flask db stamp base` puis `flask db upgrade`
+
+---
+
+## Description du projet
+
+App Flask quiz orthographe pour enfants de primaire. Une phrase avec un mot mal orthographié s'affiche en carte Pokémon, l'enfant clique sur l'erreur contre la montre.
+
+**Stack** : Flask + Flask-Login + Flask-WTF + SQLAlchemy + SQLite | Jinja2 + dark theme CSS | PythonAnywhere
+
+### Fichiers clés
+- `app.py` — `create_app()`, extensions, headers sécurité, config
+- `models.py` — `User`, `Phrase`, `Score`
+- `routes.py` — toutes les routes dans `register_routes(app)` + `CsrfForm` + `Limiter`
 - `services.py` — `selectionner_phrases`, `calculer_points`, `get_type_info`, `POKEMON_NOMS`, `recharger_phrases`
-- `init_db.py` — recrée uniquement les tables `Phrase` et `Score` (conserve `User`)
-- `data/phrases.csv` — source des phrases, colonnes : `texte, mot_errone, mot_corrige, position_mot, difficulte, temps_limite, groupe`
-- `run.py` — point d'entrée local
+- `moderation.py` — filtre mots interdits dans les pseudos
+- `data/phrases.csv` — `texte, mot_errone, mot_corrige, position_mot, difficulte, temps_limite, groupe`
+- `init_db.py` — recrée `Phrase` et `Score` uniquement (conserve `User`)
 
-## Modèle de données
-- **User** : `id, login, password_hash` (age et email_parent commentés/désactivés)
-- **Phrase** : `id, texte, mot_errone, mot_corrige, position_mot, difficulte (1-10), temps_limite, groupe (nullable)`
+### Modèle de données
+- **User** : `id, login, password_hash, age, mois_naissance`
+- **Phrase** : `id, texte, mot_errone, mot_corrige, position_mot, difficulte (1-10), temps_limite, groupe`
 - **Score** : `id, user_id, valeur, date`
 
-## Fonctionnalités implémentées
-- Authentification (login/register/logout) + interface admin (rechargement CSV depuis `/admin`)
-- Quiz adaptatif selon score max du joueur : difficulté ≤3 / ≥4 / ≥7
-- Sélection sans doublon de variante : champ `groupe` dans `Phrase`, fonction `_un_par_groupe()`
-- Timer par question, calcul de points avec bonus temps
-- Carte Pokémon visuelle : image depuis PokeAPI sprites CDN, nom FR depuis `POKEMON_NOMS`
-- 5 types visuels selon difficulté : Normal / Plante / Eau / Feu / Psychique
-- Protection retour arrière navigateur : `Cache-Control: no-store` + vérification `phrase_id` en session
-- CSS partagé dark theme dans `base.html` (`.home-title`, `.form-box`, `.action-btn`, etc.)
-- Templates : `login.html`, `register.html`, `quiz_home.html`, `quiz_question.html`, `quiz_result.html`
+### Points d'attention CSV
+- `position_mot` : index **base 0** dans `texte.split()` — ponctuation collée au mot
+- `groupe` : optionnel — un seul par groupe par quiz (`_un_par_groupe()`)
+- Après modif CSV : `init_db.py` puis recharger via `/admin`
 
-## Points d'attention
-- `position_mot` est un index **base 0** dans `phrase.texte.split()`
-- La ponctuation est collée au mot lors du split — pas d'espaces autour des tirets ni avant les apostrophes dans le CSV
-- `groupe` est lu en optionnel dans l'import CSV (`row.get('groupe', '')`)
-- Après modification du modèle → relancer `init_db.py` puis recharger le CSV via `/admin`
-- Les `console.log` de debug ont été retirés du JS — ne pas les remettre en prod
-
-## Préférences de collaboration
-- **Commenter plutôt que supprimer** : ne jamais supprimer du code sans demande explicite
-- **Valider avant d'implémenter** : pour tout changement architectural, proposer les options d'abord
-- **Lire avant de modifier** : toujours lire un fichier avant de l'éditer, surtout le CSV
-- **Réponses courtes** : aller droit au but, expliquer uniquement ce qui impacte d'autres fichiers
+### Fonctionnalités
+- Auth login/register/logout + reset password (âge + mois, sans email)
+- Quiz adaptatif : difficulté ≤3 / ≥4 / ≥7 selon score max joueur
+- Timer serveur (anti-triche), bonus points rapidité
+- Carte Pokémon : 5 types visuels selon difficulté, image PokeAPI CDN, nom FR
+- Protection retour arrière : `Cache-Control: no-store` + vérif `phrase_id` en session
+- Top 10 leaderboard sur page d'accueil quiz
+- Admin `/admin` : rechargement CSV, liste utilisateurs, suppression
