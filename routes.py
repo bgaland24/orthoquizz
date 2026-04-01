@@ -1,3 +1,4 @@
+import re
 from functools import wraps
 from flask import render_template, request, redirect, url_for, flash, session
 from flask_login import login_user, logout_user, login_required, current_user
@@ -6,6 +7,8 @@ from flask_wtf import FlaskForm
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from moderation import login_est_autorise
+
+LOGIN_RE = re.compile(r'^[a-zA-ZÀ-ÿ0-9_-]{3,15}$')
 
 
 class CsrfForm(FlaskForm):
@@ -70,16 +73,16 @@ def register_routes(app):
             password_confirm = request.form.get('password_confirm', '')
 
             errors = []
-            if len(login_val) < 3:
-                errors.append('Le pseudo doit faire au moins 3 caractères.')
+            if not LOGIN_RE.match(login_val):
+                errors.append('Le pseudo doit faire entre 3 et 15 caractères (lettres, chiffres, - ou _).')
             if not login_est_autorise(login_val):
                 errors.append("Ce pseudo n'est pas autorisé. Choisis un autre pseudo.")
             if not age_val.isdigit() or not (5 <= int(age_val) <= 99):
                 errors.append("L'âge doit être compris entre 5 et 99 ans.")
             if not mois_val.isdigit() or not (1 <= int(mois_val) <= 12):
                 errors.append("Le mois de naissance est invalide.")
-            if len(password) < 6:
-                errors.append('Le mot de passe doit faire au moins 6 caractères.')
+            if not (6 <= len(password) <= 20):
+                errors.append('Le mot de passe doit faire entre 6 et 20 caractères.')
             if password != password_confirm:
                 errors.append('Les mots de passe ne correspondent pas.')
 
@@ -212,8 +215,8 @@ def register_routes(app):
             password         = request.form.get('password', '')
             password_confirm = request.form.get('password_confirm', '')
 
-            if len(password) < 6:
-                flash('Le mot de passe doit faire au moins 6 caractères.', 'error')
+            if not (6 <= len(password) <= 20):
+                flash('Le mot de passe doit faire entre 6 et 20 caractères.', 'error')
                 return render_template('reset_password.html', form=form)
             if password != password_confirm:
                 flash('Les mots de passe ne correspondent pas.', 'error')

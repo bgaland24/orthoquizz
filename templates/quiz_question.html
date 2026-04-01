@@ -497,9 +497,6 @@
 
         document.querySelectorAll('.word-btn').forEach(w => w.disabled = true);
 
-        console.log('position cliquée:', position, typeof position);
-        console.log('correctPosition:', correctPosition, typeof correctPosition);
-
         if (position === correctPosition) {
             el.classList.add('word-correct');
             showFeedback('bravo');

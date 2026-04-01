@@ -42,7 +42,7 @@
             <td style="padding:8px 6px;">{{ mois_noms[user.mois_naissance] if user.mois_naissance else '—' }}</td>
             <td style="padding:8px 6px;">
                 <form method="POST" action="{{ url_for('admin_delete_user', user_id=user.id) }}"
-                      onsubmit="return confirm('Supprimer {{ user.login }} et tous ses scores ?')">
+                      onsubmit="return confirm('Supprimer cet utilisateur et tous ses scores ?')">
                     {{ form.hidden_tag() }}
                     <button type="submit"
                             style="background:#e74c3c; color:white; border:none; padding:4px 10px; border-radius:4px; cursor:pointer; font-size:12px;">

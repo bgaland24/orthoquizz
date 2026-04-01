@@ -45,6 +45,8 @@ def create_app() -> Flask:
     migrate_ext.init_app(app, db)
 
     # --- Headers de sécurité HTTP ---
+    is_production = os.environ.get('FLASK_ENV') == 'production'
+
     @app.after_request
     def set_security_headers(response):
         response.headers['X-Frame-Options']        = 'DENY'
@@ -58,6 +60,14 @@ def create_app() -> Flask:
             "img-src 'self' data: https://raw.githubusercontent.com https://pokeapi.co; "
             "connect-src 'self';"
         )
+        response.headers['Permissions-Policy'] = (
+            "camera=(), microphone=(), geolocation=(), "
+            "payment=(), usb=(), fullscreen=(self)"
+        )
+        if is_production:
+            response.headers['Strict-Transport-Security'] = (
+                'max-age=31536000; includeSubDomains'
+            )
         return response
 
     # --- Routes ---

@@ -3,9 +3,15 @@ texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite,groupe
 "Il possède une carapace qui le protege de toutes les attaques","protege","protège",6,3,20,
 "Ses ailes lui permettent de volé à une vitesse incroyable","volé","voler",5,2,20,
 "Ce Pokémon ce nourrit exclusivement de lumière solaire","ce","se",2,5,20,
-"Il a été aperçu dans les forêts humide du nord","humide","humides",3,5,20,
+"Il a été aperçu dans les forêts humide du nord","humide","humides",7,5,20,
 "Ses attaques sont tellement puissante qu'on ne peut pas les esquiver","puissante","puissantes",3,3,20,
-"Ce Pokémon légendaire a vécut plus de mille ans dans les montagnes","vécut","vécu",4,5,20,
+"Ce Pokémon légendaire a vécut plus de mille ans dans les montagnes","vécut","vécu",4,5,20,"g005"
+"Ce Pokémon légendère a vécu plus de mille ans dans les montagnes","légendère","legendaire",2,2,20,"g005"
+"Ce Pokémon légendaire a vécu plus de mille ans dens les montagnes","vécut","vécu",9,2,20,"g005"
+"Ce Pokémon légendaire a vécu plus de mille ans dans les montagne","montagne","montagnes",11,2,20,"g005"
+"Ce Pokémon légendaire à vécu plus de mille ans dans les montagnes","à","a",3,3,20,"g005"
+"Ce Pokémon légendaire a vécu plus de mil ans dans les montagnes","mil","mille",4,3,20,"g005"
+"Ce Pokémon légendaire a vécue plus de mille ans dans les montagnes","vécue","vécu",4,6,20,"g005"
 "Il projette des éclairs sur ces ennemis pendant la nuit","ces","ses",5,5,20,
 "Sa queue lui sert a se défendre contre les prédateurs","a","à",5,4,20,
 "Ce Pokémon s'est adapter parfaitement à son environnement glacial","adapter","adapté",3,4,20,
@@ -16,9 +22,9 @@ texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite,groupe
 "Ses écailles sont aussi dur que du diamant.","dur","dures",2,4,20,"g004"
 "Ses écailles son aussi dures que du diamant.", "son", "sont", 2, 2, 20,"g004"
 "Ses écailles sont aussi dures que du diament.", "diament", "diamant", 4, 7, 20,"g004"
-"Ses écailles sont auçi dures que du diament.", "auçi", "aussi", 1, 3, 20,"g004"
-"Ses écailles sont ossi dures que du diament.", "ossi", "aussi", 1, 3, 20,"g004"
-"Ses ecailles sont aussi dures que du diament.", "ecailles", "écailles", 4, 1, 20,"g004"
+"Ses écailles sont auçi dures que du diament.", "auçi", "aussi", 3, 1, 20,"g004"
+"Ses écailles sont ossi dures que du diament.", "ossi", "aussi", 3, 1, 20,"g004"
+"Ses ecailles sont aussi dures que du diament.", "ecailles", "écailles", 1, 4, 20,"g004"
 "Ce Pokémon féroce chasse toujours seul dans les plaines ouvert","ouvert","ouvertes",9,6,20,
 "Il génère un champ magnétique qui pertube les appareils électroniques","pertube","perturbe",6,7,20,
 "Sa mâchoire est si puissant qu'elle peut broyer du métal","puissant","puissante",4,7,20,
@@ -34,13 +40,19 @@ texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite,groupe
 "Sa salive est un poison puissent qui paralyse ses ennemis en quelques secondes","puissent","puissant",5,2,20,"g001"
 "Sa salive est un poison puissant qui paralise ses ennemis en quelques secondes","paralise","paralyse",7,3,20,"g001"
 "Sa salive est un poison puissant qui paralyse ses enemis en quelques secondes","enemis","ennemis",9,4,20,"g001"
-"Sa salive est un poison puissant qui paralysent ses ennemis en quelques secondes","paralyse","paralysent",7,3,20,"g001"
+"Sa salive est un poison puissant qui paralysent ses ennemis en quelques secondes","paralysent","paralyse",7,3,20,"g001"
 "Ce Pokémon vit en groupe qui défent ensemble son territoire","défent","défend",6,6,20,"g002"
 "Ce Pokémon vit en groupe qui défend ensamble son territoire","ensamble","ensemble",7,3,20,"g002"
 "Ce Pokémon vit en groupe qui défend ensemble son teritoire","teritoire","territoire",9,4,20,"g002"
 "Ce Pokémon vie en groupe qui défend ensemble son territoire","vie","vit",2,5,20,"g002"
 "Il absorbe la chaleur du soleil et la restitut sous forme d'énergie","restitut","restitue",8,8,20,
-"Ses tentacules peuvent s'étirer jusqu à dix fois leurs longeur initiale","longeur","longueur",9,6,20,
+"Ses tentacules peuvent s'étirer jusqu'à dix fois leur longeur initiale.","longeur","longueur",8,2,20,"g006"
+"Ses tentacules peut s'étirer jusqu'à dix fois leur longueur initiale.","peut","peuvent",2,2,20,"g006"
+"Ses tentacules peuvent s'étirer jusqu'a dix fois leur longueur initiale.","jusqu'a","jusqu'à",4,4,20,"g006"
+"Ses tentacules peuvent s'étiré jusqu'à dix fois leur longueur initiale.","s'étiré","s'étirer",3,3,20,"g006"
+"Ses tentacules peuvent s'étirer jusqu'à dix fois leur longueur initial.","initial.","initiale.",9,2,20,"g006"
+"Ses tentacules peuvent c'étirer jusqu'à dix fois leur longueur initiale.","c'étirer","s'étirer",3,3,20,"g006"
+"Ses tantacules peuvent s'étirer jusqu'à dix fois leur longueur initiale.","tantacules","tentacules",1,3,20,"g006"
 "Ce Pokémon est redouté de tous ses adversaires car il ne ce fatigue jamais","ce","se",11,5,20,
 "Il a été observé en train de soulever des rochers qu'il lançait sur ces proies","ces","ses",13,6,20,
 "Sa fourrure épaisse lui permet de résisté aux températures les plus extrêmes","résisté","résister",6,7,20,
@@ -49,18 +61,18 @@ texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite,groupe
 "Sa technique favorite consiste à attiré ses adversaires dans un piège","attiré","attirer",5,5,20,
 "Ce Pokémon est le seul de son espèce a avoir survécu à l'ère glaciaire","a","à",8,6,20,
 "Il produit une lumière si intense qu'elle peut être apercue à des kilomètres à la ronde","apercue","aperçue",9,6,20,
-"Ses griffes sont si affûtée qu'elles peuvent trancher n'importe quelle surface","afutée","affûtées",4,2,20,"g003"
+"Ses griffes sont si affûtée qu'elles peuvent trancher n'importe quelle surface","affûtée","affûtées",4,2,20,"g003"
 "Ses griffes sont si affûtées qu'elles peuve trancher n'importe quelle surface","peuve","peuvent",6,3,20,"g003"
 "Ses griffes sont si affûtées qu'elles peuvent tranché n'importe quelle surface","tranché","trancher",7,4,20,"g003"
 "Ses griffes sont si affûtées qu'elles peuvent trancher n'importe quel surface","quel","quelle",9,5,20,"g003"
 "Ses griffes sont si affutées qu'elles peuvent trancher n'importe quelle surface","affutées","affûtées",4,10,20,"g003"
 "Ce Pokémon a choisit ce territoire il y a plusieurs siècles et ne l'a jamais quitté","choisit","choisi",3,9,20,
-"Il crache du feu très chaud sur les frites de ses ennemis affamé.","affamé","affamés",12,4,20,"g01"
+"Il crache du feu très chaud sur les frites de ses ennemis affamé.","affamé.","affamés.",12,4,20,"g01"
 "Il crache du feu très chaud sur les frites de ces ennemis affamés.","ces","ses",10,5,20,"g01"
 "Il crache du feu très chaud sur les frites de ses enemis affamés.","enemis","ennemis",11,6,20,"g01"
 "Il crache du feu très chau sur les frites de ses ennemis affamés.","chau","chaud",5,4,20,"g01"
 "Il craches du feu très chaud sur les frites de ses ennemis affamés.","craches","crache",1,4,20,"g01"
-"Elle ronfle si fort la nuit que tous les voisins porte des bouchons.","porte","portent",9,5,20,"g02"
+"Elle ronfle si fort la nuit que tous les voisins porte des bouchons.","porte","portent",10,5,20,"g02"
 "Elle ronfle si for la nuit que tous les voisins portent des bouchons.","for","fort",3,4,20,"g02"
 "Elle ronflent si fort la nuit que tous les voisins portent des bouchons.","ronflent","ronfle",1,4,20,"g02"
 "Elle ronfle si fort la nuit que tout les voisins portent des bouchons.","tout","tous",7,6,20,"g02"
@@ -70,7 +82,7 @@ texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite,groupe
 "Ce Pokémon manges toujours trop vite et tombe souvent sur le ventre.","manges","mange",2,5,20,"g03"
 "Ce Pokémon mange toujours trop vite et tombe souvent sur le vantre.","vantre","ventre",11,4,20,"g03"
 "Ce Pokémon mange toujours trop vite et tombent souvent sur le ventre.","tombent","tombe",7,5,20,"g03"
-"Il court trés vite mais trébuche toujours sur sa propre queue immense.","très","très",2,5,20,"g04"
+"Il court trés vite mais trébuche toujours sur sa propre queue immense.","trés","très",2,5,20,"g04"
 "Il court très vite mais trebuche toujours sur sa propre queue immense.","trebuche","trébuche",5,6,20,"g04"
 "Il court très vite mais trébuche toujours sur sa propre queue imense.","imense","immense",11,5,20,"g04"
 "Il court très vite mais trébuche toujours sur sa propre que immense.","que","queue",10,5,20,"g04"
@@ -81,7 +93,7 @@ texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite,groupe
 "Elle éternue si fort que ses amis volent jusqu'aux nuages tous blancs.","tous","tout",10,6,20,"g05"
 "Elle éternue si fort que ses amis volent juscaux nuages tout blancs.","juscaux","jusqu'aux",8,4,20,"g05"
 "Ce Pokémon glouton avalle ses adversaires entiers et les recrache bien baveux.","avalle","avale",4,6,20,"g06"
-"Ce Pokémon glouton avale ses adversaires entiers et les recrache bien baveu.","baveu","baveux",11,6,20,"g06"
+"Ce Pokémon glouton avale ses adversaires entiers et les recrache bien baveu.","baveu.","baveux.",11,6,20,"g06"
 "Ce Pokémon glouton avale ses adversaires entier et les recrache bien baveux.","entier","entiers",6,6,20,"g06"
 "Ce Pokémon glouton avale ses adversères entiers et les recrache bien baveux.","adversères","adversaires",5,6,20,"g06"
 "Ce Pokémon glouton avale ses adversaires entiers et les recrachent bien baveux.","recrachent","recrache",8,7,20,"g06"
@@ -105,7 +117,7 @@ texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite,groupe
 "Elle agite ses grandes oreilles poilues pour refroidir ces copains épuisés.","ces","ses",8,6,20,"g10"
 "Elle agite ses grendes oreilles poilues pour refroidir ses copains épuisés.","grendes","grandes",3,5,20,"g10"
 "Elle agite ses grandes oreilles poilues pour refroidir ses copins épuisés.","copins","copains",9,6,20,"g10"
-"Il hipnotise facilement ses ennemis vaincus et leur ordonne de danser la samba.","hipnotise","hyptontise",1,8,20,"g11"
+"Il hipnotise facilement ses ennemis vaincus et leur ordonne de danser la samba.","hipnotise","hyptotise",1,8,20,"g11"
 "Il hypnotise facilement ses ennemis vaincu et leur ordonne de danser la samba.","vaincu","vaincus",5,6,20,"g11"
 "Il hypnotise facilement ses ennemis vaincus et leur ordonnent de danser la samba.","ordonnent","ordonne",8,7,20,"g11"
 "Il hypnotise facilement ses ennemis vaincus et leur ordonne de dansé la samba.","dansé","danser",10,7,20,"g11"
@@ -128,7 +140,7 @@ texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite,groupe
 "Il parle courament sept langues différentes mais oublie toujours son propre prénom.","courament","couramment",2,8,20,"g15"
 "Il parle couramment sept langues diférentes mais oublie toujours son propre prénom.","diférentes","différentes",5,7,20,"g15"
 "Il parle couramment sept langues différentes mais oublie toujours sont propre prénom.","sont","son",9,7,20,"g15"
-"Il parle couramment sept langues différentes mais oublie toujours son propre prénon.","prénon","prénom",11,7,20,"g15"
+"Il parle couramment sept langues différentes mais oublie toujours son propre prénon.","prénon.","prénom.",11,7,20,"g15"
 "Il parle courammant sept langues différentes mais oublie toujours son propre prénom.","courammant","couramment",2,7,20,"g15"
 "Elle métamorfose instantanément ses adversaires redoutables en escargots lents et profondément consternés.","métamorfose","métamorphose",1,8,20,"g16"
 "Elle métamorphose instantanement ses adversaires redoutables en escargots lents et profondément consternés.","instantanement","instantanément",2,9,20,"g16"
