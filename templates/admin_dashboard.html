@@ -15,6 +15,34 @@
 
 <hr>
 
+<h3>Statistiques des phrases</h3>
+<div class="stats-grid">
+    <div class="stats-block">
+        <h4>Par niveau de difficulté</h4>
+        <table class="admin-table">
+            <thead><tr><th>Niveau</th><th>Nb phrases</th></tr></thead>
+            <tbody>
+            {% for diff, nb in stats_diff %}
+            <tr><td>{{ diff }}</td><td>{{ nb }}</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="stats-block">
+        <h4>Par type de faute</h4>
+        <table class="admin-table">
+            <thead><tr><th>Type</th><th>Nb phrases</th></tr></thead>
+            <tbody>
+            {% for type, nb in stats_type %}
+            <tr><td>{{ type or '—' }}</td><td>{{ nb }}</td></tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<hr>
+
 <h3>Recharger les phrases</h3>
 <p class="admin-description">Supprime toutes les phrases et les remplace par <code>data/phrases.csv</code>.</p>
 <form method="POST" action="{{ url_for('admin_reload') }}">

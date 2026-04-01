@@ -275,11 +275,23 @@ def register_routes(app):
                  .group_by(User.id)
                  .order_by(User.id.desc())
                  .all())
+        # Stats par difficulté
+        stats_diff = (db.session.query(Phrase.difficulte, func.count(Phrase.id))
+                      .group_by(Phrase.difficulte)
+                      .order_by(Phrase.difficulte)
+                      .all())
+        # Stats par type
+        stats_type = (db.session.query(Phrase.type, func.count(Phrase.id))
+                      .group_by(Phrase.type)
+                      .order_by(Phrase.type)
+                      .all())
         return render_template('admin_dashboard.html',
                                form=CsrfForm(),
                                nb_phrases=Phrase.query.count(),
                                nb_users=User.query.count(),
-                               users=users)
+                               users=users,
+                               stats_diff=stats_diff,
+                               stats_type=stats_type)
 
     @app.route('/admin/user/<int:user_id>/delete', methods=['POST'])
     @admin_required

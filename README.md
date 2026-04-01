@@ -29,13 +29,34 @@ flask db upgrade
 
 ## Phrases (`data/phrases.csv`)
 
-Colonnes : `texte, mot_errone, mot_corrige, position_mot, difficulte, temps_limite, groupe`
+Colonnes : `texte, mot_errone, mot_corrige, position_mot, type, difficulte, temps_limite, groupe`
 
 - `position_mot` : index base 0 dans `texte.split()` — ponctuation collée au mot
+- `type` : catégorie de la faute — `homophone`, `accent`, `accord`, `conjugaison`, `doublon`, `lettre_manquante`, `mot_incorrect`, `pluriel`, `cod`
 - `difficulte` : 1 à 10
 - `groupe` : optionnel — un seul par groupe par quiz
 
-Après modification : `python init_db.py` puis recharger via `/admin`.
+Après modification du CSV : recharger via le bouton **"Recharger depuis le CSV"** dans `/admin` (ne supprime pas les users ni les scores).
+
+## Migrations de base de données
+
+Pour appliquer les migrations sans perte de données (ajout de colonnes, rechargement du CSV) :
+
+```bash
+python migrate_and_reload.py
+```
+
+Ce script :
+1. Applique toutes les migrations Alembic en attente (`flask db upgrade`)
+2. Recharge uniquement la table `Phrase` depuis `data/phrases.csv`
+
+Les tables `User` et `Score` ne sont jamais touchées.
+
+**Première installation** (BDD vide, sans historique Alembic) :
+```bash
+flask db stamp base
+python migrate_and_reload.py
+```
 
 ## Déploiement PythonAnywhere
 
@@ -53,4 +74,5 @@ if project_folder not in sys.path:
 from app import app as application
 ```
 
-4. Recharger depuis l'onglet **Web** de PythonAnywhere.
+4. Appliquer les migrations : `python migrate_and_reload.py`
+5. Recharger depuis l'onglet **Web** de PythonAnywhere.

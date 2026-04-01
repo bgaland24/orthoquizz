@@ -30,6 +30,7 @@ class Phrase(db.Model):
     mot_errone   = db.Column(db.String(100), nullable=False)
     mot_corrige  = db.Column(db.String(100), nullable=False)
     position_mot = db.Column(db.Integer,     nullable=False)
+    type         = db.Column(db.String(30),  nullable=True)   # homophone, accent, accord, conjugaison, doublon, lettre_manquante, mot_incorrect, pluriel, cod
     difficulte   = db.Column(db.Integer,     nullable=False)
     temps_limite = db.Column(db.Integer,     nullable=False)
     groupe       = db.Column(db.String(50),  nullable=True)   # regroupe les variantes d'une même phrase

@@ -310,7 +310,7 @@ def recharger_phrases(csv_path: str) -> tuple[bool, str]:
         return False, f'Fichier introuvable : {csv_path}'
 
     colonnes_attendues = {'texte', 'mot_errone', 'mot_corrige',
-                          'position_mot', 'difficulte', 'temps_limite'}
+                          'position_mot', 'type', 'difficulte', 'temps_limite'}
     errors  = []
     phrases = []
 
@@ -341,9 +341,10 @@ def recharger_phrases(csv_path: str) -> tuple[bool, str]:
                     mot_errone   = row['mot_errone'].strip(),
                     mot_corrige  = row['mot_corrige'].strip(),
                     position_mot = position_mot,
+                    type         = (row.get('type') or '').strip() or None,
                     difficulte   = difficulte,
                     temps_limite = temps_limite,
-                    groupe       = row.get('groupe', '').strip() or None,
+                    groupe       = (row.get('groupe') or '').strip() or None,
                 ))
 
             except (ValueError, KeyError) as e:
