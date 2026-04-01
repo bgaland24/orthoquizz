@@ -192,12 +192,12 @@ texte,mot_errone,mot_corrige,position_mot,type,difficulte,temps_limite,groupe
 "Il génère des champs magnétiques puissants qui attire involontairement toutes les cuillères environnantes.","attire","attirent",7,accord,9,20,"g18"
 "Il génère des champs magnétiques puissants qui attirent involontairemant toutes les cuillères environnantes.","involontairemant","involontairement",8,lettre_manquante,9,20,"g18"
 "Il génère des champs magnétiques puissants qui attirent involontairement toutes les cuillères environantes.","environantes","environnantes",12,doublon,10,20,"g18"
-"Ce pokemon s'est permis de manger toutes les baies qu'il a trouvé dans le jardin", "trouvé", "trouvées", 12, cod, 10, 20, 
-"Il s'est rendu compte des erreurs qu'il a commis sans vraiment les comprendre", "commis", "commises", 10, cod, 10, 20, 
-"Ce pokemon s'est imaginé les histoires qu'il a entendu pendant la nuit entière", "entendu", "entendues", 11, cod, 10, 20, 
-"Il s'est aperçu des fautes qu'il a fait sans jamais les corriger ensuite", "fait", "faites", 9, cod, 10, 20, 
-"Ce pokemon s'est souvenu des chansons qu'il a chanté avec ses amis hier soir", "chanté", "chantées", 11, cod, 10, 20, 
-"Il s'est rappelé les promesses qu'il a oublié de tenir depuis longtemps", "oublier", "oubliées", 10, cod, 10, 20, 
-"Il s'est félicité pour les efforts qu'il a fourni tout au long du voyage", "fourni", "fournis", 10, cod, 10, 20, 
-"Ce pokemon s'est étonné des choses qu'il a découvert dans cette foret magique", "découvert", "découvertes", 10, cod, 10, 20, 
-"Il s'est souvenu des secrets qu'il a gardé pendant toutes ces années", "garder", "gardés", 9, cod, 10, 20, 
+"Ce pokemon s'est permis de manger toutes les baies qu'il a trouvé dans le jardin", "trouvé", "trouvées", 11, cod, 10, 20, 
+"Il s'est rendu compte des erreurs qu'il a commis sans vraiment les comprendre", "commis", "commises", 8, cod, 10, 20, 
+"Ce pokemon s'est imaginé les histoires qu'il a entendu pendant la nuit entière", "entendu", "entendues", 8, cod, 10, 20, 
+"Il s'est aperçu des fautes qu'il a fait sans jamais les corriger ensuite", "fait", "faites", 7, cod, 10, 20, 
+"Ce pokemon s'est souvenu des chansons qu'il a chanté avec ses amis hier soir", "chanté", "chantées", 8, cod, 10, 20, 
+"Il s'est rappelé les promesses qu'il a oublié de tenir depuis longtemps", "oublier", "oubliées", 7, cod, 10, 20, 
+"Il s'est félicité pour les efforts qu'il a fourni tout au long du voyage", "fourni", "fournis", 8, cod, 10, 20, 
+"Ce pokemon s'est étonné des choses qu'il a découvert dans cette foret magique", "découvert", "découvertes", 8, cod, 10, 20, 
+"Il s'est souvenu des secrets qu'il a gardé pendant toutes ces années", "garder", "gardés", 7, cod, 10, 20, 
