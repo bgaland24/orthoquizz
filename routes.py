@@ -51,6 +51,7 @@ def register_routes(app):
     # -----------------------------------------------------------------------
 
     @app.route('/register', methods=['GET', 'POST'])
+    @limiter.limit('10 per minute', methods=['POST'])
     def register():
         if current_user.is_authenticated:
             return redirect(url_for('quiz_home'))
@@ -111,7 +112,7 @@ def register_routes(app):
     # -----------------------------------------------------------------------
 
     @app.route('/login', methods=['GET', 'POST'])
-    @limiter.limit('5 per minute')
+    @limiter.limit('10 per minute', methods=['POST'])
     def login():
         if current_user.is_authenticated:
             return redirect(url_for('quiz_home'))
@@ -155,6 +156,7 @@ def register_routes(app):
     # -----------------------------------------------------------------------
 
     @app.route('/forgot-password', methods=['GET', 'POST'])
+    @limiter.limit('10 per minute', methods=['POST'])
     def forgot_password():
         if current_user.is_authenticated:
             return redirect(url_for('quiz_home'))
@@ -189,6 +191,7 @@ def register_routes(app):
         return render_template('forgot_password.html', form=form, attempts=session.get('forgot_attempts', 0))
 
     @app.route('/reset-password', methods=['GET', 'POST'])
+    @limiter.limit('10 per minute', methods=['POST'])
     def reset_password():
         if current_user.is_authenticated:
             return redirect(url_for('quiz_home'))
@@ -234,7 +237,7 @@ def register_routes(app):
     # -----------------------------------------------------------------------
 
     @app.route('/admin/login', methods=['GET', 'POST'])
-    @limiter.limit('5 per minute')
+    @limiter.limit('10 per minute', methods=['POST'])
     def admin_login():
         if is_admin():
             return redirect(url_for('admin_dashboard'))

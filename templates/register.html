@@ -21,6 +21,9 @@
         <input type="number" name="age" placeholder="ex : 10" required min="5" max="99">
         <label>Ton mois de naissance</label>
         {{ mois_select() }}
+        <p style="font-size:12px; color:rgba(255,255,255,0.55); margin:-6px 0 10px; line-height:1.5;">
+            Ton âge et ton mois de naissance servent uniquement à retrouver ton mot de passe si tu l'oublies.
+        </p>
         <label>Mot de passe</label>
         <input type="password" name="password" placeholder="6 caractères minimum" required minlength="6">
         <label>Confirme ton mot de passe</label>

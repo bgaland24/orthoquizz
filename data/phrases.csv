@@ -13,7 +13,12 @@ texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite,groupe
 "Ses cris résonnent dans les vallé et effraient ses adversaires","vallé","vallées",5,3,20,
 "Ce Pokémon peut soulevé des rochers de plusieurs tonnes","soulevé","soulever",3,4,20,
 "Il a développer un sixième sens pour détecter ses proies","développer","développé",2,8,20,
-"Ses écailles sont aussi dur que du diamant","dur","dures",2,5,20,
+"Ses écailles sont aussi dur que du diamant.","dur","dures",2,4,20,"g004"
+"Ses écailles son aussi dures que du diamant.", "son", "sont", 2, 2, 20,"g004"
+"Ses écailles sont aussi dures que du diament.", "diament", "diamant", 4, 7, 20,"g004"
+"Ses écailles sont auçi dures que du diament.", "auçi", "aussi", 1, 3, 20,"g004"
+"Ses écailles sont ossi dures que du diament.", "ossi", "aussi", 1, 3, 20,"g004"
+"Ses ecailles sont aussi dures que du diament.", "ecailles", "écailles", 4, 1, 20,"g004"
 "Ce Pokémon féroce chasse toujours seul dans les plaines ouvert","ouvert","ouvertes",9,6,20,
 "Il génère un champ magnétique qui pertube les appareils électroniques","pertube","perturbe",6,7,20,
 "Sa mâchoire est si puissant qu'elle peut broyer du métal","puissant","puissante",4,7,20,
@@ -81,7 +86,7 @@ texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite,groupe
 "Ce Pokémon glouton avale ses adversères entiers et les recrache bien baveux.","adversères","adversaires",5,6,20,"g06"
 "Ce Pokémon glouton avale ses adversaires entiers et les recrachent bien baveux.","recrachent","recrache",8,7,20,"g06"
 "Elle produit des éclairs fulgurents mais a souvent peur de son ombre.","fulgurents","fulgurants",4,6,20,"g07"
-"Elle produit des éclairs fulgurants mais a souvant peur de son ombre.","souvant","souvent",6,6,20,"g07"
+"Elle produit des éclairs fulgurants mais a souvant peur de son ombre.","souvant","souvent",6,7,20,"g07"
 "Elle produit des éclairs fulgurant mais a souvent peur de son ombre.","fulgurant","fulgurants",4,6,20,"g07"
 "Elle produit des éclairs fulgurants mais a souvent peur de sont ombre.","sont","son",10,5,20,"g07"
 "Elle produit des éclairs fulgurants mais à souvent peur de son ombre.","à","a",6,6,20,"g07"
@@ -103,7 +108,7 @@ texte,mot_errone,mot_corrige,position_mot,difficulte,temps_limite,groupe
 "Il hipnotise facilement ses ennemis vaincus et leur ordonne de danser la samba.","hipnotise","hyptontise",1,8,20,"g11"
 "Il hypnotise facilement ses ennemis vaincu et leur ordonne de danser la samba.","vaincu","vaincus",5,6,20,"g11"
 "Il hypnotise facilement ses ennemis vaincus et leur ordonnent de danser la samba.","ordonnent","ordonne",8,7,20,"g11"
-"Il hypnotise facilement ses ennemis vaincus et leur ordonne de dansé la samba.","dansé","danser",11,7,20,"g11"
+"Il hypnotise facilement ses ennemis vaincus et leur ordonne de dansé la samba.","dansé","danser",10,7,20,"g11"
 "Il hypnotise fassilement ses ennemis vaincus et leur ordonne de danser la samba.","fassilement","facilement",2,6,20,"g11"
 "Ce Pokémon invisible renverse toujours maladroitemant ses proies étonnées de ne pas le voir arriver.","maladroitemant","maladroitement",5,7,20,"g12"
 "Ce Pokémon invisible renverse toujours maladroitement ses proies étonnées de ne pas le voir arrivé.","arrivé","arriver",14,7,20,"g12"

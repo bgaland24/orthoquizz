@@ -22,6 +22,7 @@ Format : quiz style carte Pokémon — une phrase s'affiche, l'enfant clique sur
 ## Installation locale
 
 ```bash
+
 pip install -r requirements.txt
 cp .env.example .env   # puis édite .env avec tes valeurs
 python init_db.py      # crée la base et charge les phrases depuis data/phrases.csv
