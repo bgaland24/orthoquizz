@@ -32,9 +32,10 @@ def selectionner_phrases(n: int = 10, user_id: int = None) -> list:
     proposer deux variantes d'une même phrase dans la même session.
 
     Règles (basées sur le score max du joueur) :
-      - >= 700 pts  → phrases de difficulté >= 7
-      - 400–699 pts → phrases de difficulté >= 4
-      - < 400 pts   → phrases de difficulté <= 3
+      - >= 700 pts      → difficulté >= 7
+      - 400–699 pts     → difficulté 5, 6 ou 7
+      - 200–399 pts     → difficulté 3, 4 ou 5
+      - < 200 pts       → difficulté 1, 2 ou 3
     Si la sélection ciblée est insuffisante, on complète avec d'autres
     phrases (en respectant toujours la contrainte de groupe).
     """
@@ -54,7 +55,9 @@ def selectionner_phrases(n: int = 10, user_id: int = None) -> list:
     if score_max >= 700:
         pool_cible = Phrase.query.filter(Phrase.difficulte >= 7).all()
     elif score_max >= 400:
-        pool_cible = Phrase.query.filter(Phrase.difficulte >= 4).all()
+        pool_cible = Phrase.query.filter(Phrase.difficulte.between(5, 7)).all()
+    elif score_max >= 200:
+        pool_cible = Phrase.query.filter(Phrase.difficulte.between(3, 5)).all()
     else:
         pool_cible = Phrase.query.filter(Phrase.difficulte <= 3).all()
 
